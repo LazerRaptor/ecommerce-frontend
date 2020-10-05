@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-start,
+  .nav-end {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-start .nav-item {
+    padding-right: 2rem;
+    cursor: pointer;
+  }
+
+  .nav-end .nav-item {
+    padding-left: 2rem;
+    cursor: pointer;
+  }
+}
