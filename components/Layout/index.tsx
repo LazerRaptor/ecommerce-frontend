@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
       </div>
       <div
         className={styles["sidebar-area"]}
-        style={{ width: sidebarShown ? "20rem" : "0px" }}
+        style={{ width: sidebarShown ? "15rem" : "0px" }}
       >
         {isLoading ? <p>Loading...</p> : <Sidebar items={categories} />}
       </div>

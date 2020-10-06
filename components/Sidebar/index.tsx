@@ -8,20 +8,18 @@ const Sidebar = ({ items }) => {
     const itemStyle = isNested ? null : "mb-8";
     return (
       <ul>
-        {items.map((item) => {
-          return (
-            <li key={item.id} className={itemStyle}>
-              <div className="mb-3">
-                <Link href={item.slug}>
-                  <a className={linkStyle}>{item.title}</a>
-                </Link>
-              </div>
-              {item.children.length > 0 ? (
-                <List items={item.children} isNested={true} />
-              ) : null}
-            </li>
-          );
-        })}
+        {items.map((item) => (
+          <li key={item.id} className={itemStyle}>
+            <div className="mb-3">
+              <Link href={item.slug}>
+                <a className={linkStyle}>{item.title}</a>
+              </Link>
+            </div>
+            {item.children.length > 0 ? (
+              <List items={item.children} isNested={true} />
+            ) : null}
+          </li>
+        ))}
       </ul>
     );
   };
