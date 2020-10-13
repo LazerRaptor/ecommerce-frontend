@@ -3,7 +3,7 @@ import { ProductAPI } from "../lib/api/product";
 
 const Home = ({ featured }) => {
   return (
-    <div className="w-full">
+    <div>
       <ProductList products={featured} />
     </div>
   );

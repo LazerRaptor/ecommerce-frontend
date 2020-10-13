@@ -18,4 +18,14 @@
     padding-left: 2rem;
     cursor: pointer;
   }
+
+  .nav-link {
+    display: inline-flex;
+    text-decoration: none;
+
+    .caption {
+      font-size: .875em;
+      margin-left: .35em;
+    }
+  }
 }

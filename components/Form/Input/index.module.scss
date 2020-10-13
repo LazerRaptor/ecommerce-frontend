@@ -1,0 +1,42 @@
+$radius: 0;
+$border-color: hsla(0, 0%, 4%, .5);
+$font-size: .875em;
+$input-padding: 1rem;
+
+
+.field {
+    width: 100%;
+    position: relative;
+    
+    .input {
+        padding: $input-padding;
+        border: 1px solid $border-color;
+        width: 100%;
+        border-radius: $radius;
+    }
+}
+
+.label {
+    position: absolute;
+    top: calc(25% + .25rem);
+    left: .75rem;
+    font-size: $font-size;
+}
+
+.label__on-focus {
+    position: absolute;
+    top: -.75rem;
+    left: .75rem;
+    background: white;
+    padding: .25rem;
+    font-size: $font-size;
+ }
+
+.visibility-toggler {
+    font-size: $font-size;
+    text-decoration: underline;
+    position: absolute;
+    right: .5rem;
+    top: calc(25% + .25rem);
+    cursor: pointer;
+}

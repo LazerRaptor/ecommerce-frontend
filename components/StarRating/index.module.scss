@@ -1,16 +1,9 @@
-$rating: 50%;
+.rating { 
+    display: inline-flex;
+    align-items: center;
+}
 
-.rating {
-    display: inline-block;
-    font-family: Times;
-    line-height: 1;
-    
-    &::before {
-        content: '★★★★★';
-        letter-spacing: 3px;
-        color: #333;
-        background: linear-gradient(to right, #333 $rating, #fff $rating);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+.votes {
+    font-size: .875em;
+    margin-left: .5em;
 }

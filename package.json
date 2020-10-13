@@ -23,7 +23,6 @@
     "sass": "^1.26.10",
     "stylelint-config-recommended": "^3.0.0",
     "swr": "^0.3.4",
-    "tailwindcss": "^1.8.10",
     "uuidv4": "^6.2.3"
   },
   "devDependencies": {

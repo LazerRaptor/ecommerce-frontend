@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 const ImageList = ({ images, width, height, setActiveImage }) => {
   return images.length > 1 ? (
-    <ul className="grid grid-rows-6 gap-y-5">
+    <ul>
       {images.map((image) => (
         <li key={uuidv4()}>
           <img
@@ -10,6 +10,7 @@ const ImageList = ({ images, width, height, setActiveImage }) => {
             width={width}
             height={height}
             onClick={(e) => setActiveImage(e)}
+            className="scale-down"
           />
         </li>
       ))}

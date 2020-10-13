@@ -1,14 +1,21 @@
 .grid-container {
   display: grid;
-  grid-template-columns: minmax(250px, 2fr) minmax(300px, 2fr) minmax(
-      220px,
-      1fr
-    );
+  grid-template-columns: minmax(250px, 1.5fr) minmax(300px, 2fr) minmax(220px, 1fr);
   column-gap: 2rem;
+  font-size: 14px;
 }
 
 .title {
-  font-weight: 600;
-  font-size: 1.1rem;
   margin-bottom: 1rem;
+}
+
+.desc {
+  white-space: pre-wrap;
+  overflow-y: auto;
+  max-height: inherit;
+}
+
+.btn-desc-toggler {
+  text-decoration: underline;
+  margin: .75em 0;
 }

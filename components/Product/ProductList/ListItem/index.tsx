@@ -1,18 +1,23 @@
 import Link from "next/link";
+import StarRating from '../../../StarRating'
 import Button from "../../../Button";
+import Spacer from '../../../Spacer'
+import styles from "./index.module.scss";
+
+
 
 const Item = ({ item }) => {
   const src = item.front_image ? item.front_image.src : null;
   const alt = item.front_image ? item.front_image.alt : null;
   return (
-    <div className="py-2 px-3 flex flex-col justify-between">
-      <div className="flex items-center justify-center">
+    <div className={styles.container}>
+      <div className="flex flex-x-center">
         <Link href={`/products/${item.slug}`}>
           <a>
             <img
               src={src}
               alt={alt}
-              className="object-contain w-48 h-40"
+              className={styles.img}
               height="182"
               width="160"
             />
@@ -20,12 +25,15 @@ const Item = ({ item }) => {
         </Link>
       </div>
       <Link href={`/products/${item.slug}`}>
-        <a>
-          <h3 className="font-bold mt-5">{item.title}</h3>
+        <a className={styles.link}>
+          <p className={styles['item-title']}>{item.title}</p>
         </a>
       </Link>
-      <p className="my-4">${item.price}</p>
-      <div className="flex">
+      <StarRating grade="3.8" votes="232" />
+      <Spacer y=".5" />
+      <p>${item.price}</p>
+      <Spacer y=".5" />
+      <div>
         <Button title="Add to cart" size="sm" rounded />
       </div>
     </div>

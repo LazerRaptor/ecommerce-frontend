@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ImageList from "./ImageList";
 import ImageDetail from "./ImageDetail";
 import Spacer from "../Spacer";
+import styles from './index.module.scss';
 
 const Gallery = ({ images }) => {
   const [frontImage] = images.filter(img => img.is_front_image)
@@ -12,7 +13,7 @@ const Gallery = ({ images }) => {
         images={images} 
         setActiveImage={(e) => setActiveImage(images.filter(img => img.src === e.currentTarget.src)[0])}
       />
-      <Spacer x="1.5" />
+      {images.length > 1 ? <Spacer x="1.5" /> : null} 
       <ImageDetail image={activeImage} />
     </div>
   );

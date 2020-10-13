@@ -1,9 +1,7 @@
-import ImageList from "./ImageList";
-
 const ImageDetail = ({ image, width, height }) => {
   return (
     <div>
-      <img src={image.src} alt={image.src} width={width} height={height} />
+      <img src={image.src} alt={image.src} width={width} height={height} className="contain" />
     </div>
   );
 };

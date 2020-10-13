@@ -1,0 +1,43 @@
+/* Flex */
+
+.flex {
+    display: flex;
+}
+
+.flex-y-center {
+    align-items: center;
+}
+
+.flex-x-center {
+    justify-content: center;
+}
+
+/* Typography */
+.open-sans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.cormorant-garamond {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.font-thin {
+    font-weight: 200;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+/* Images */
+.contain {
+    object-fit: contain;
+}
+
+.scale-down {
+    object-fit: scale-down;
+}

@@ -1,23 +1,30 @@
-import { useState } from 'react'
 import Link from "next/link";
 import styles from "./index.module.scss";
 
 const Sidebar = ({ items }) => {
-  const List = ({ items, isNested }) => {
-    const linkStyle = isNested ? null : "font-semibold";
-    const itemStyle = isNested ? null : "mb-8";
+  const List = ({ items }) => {
     return (
-      <ul>
+      <ul className={styles.list}>
         {items.map((item) => (
-          <li key={item.id} className={itemStyle}>
-            <div className="mb-3">
-              <Link href={item.slug}>
-                <a className={linkStyle}>{item.title}</a>
+          <li key={item.id} className={styles.item}>
+            <div className={styles['item-title']}>
+              <Link href={`/category/${item.slug}`}>
+                <a>{item.title}</a>
               </Link>
             </div>
-            {item.children.length > 0 ? (
-              <List items={item.children} isNested={true} />
-            ) : null}
+            <ul className={styles['list-nested']}>
+              <li className={styles.item}>
+                <ul>
+                  {item.children.map(child => (
+                    <li key={child.id} className={styles.item}>
+                      <Link href={`/category/${child.slug}`}>
+                        <a className={styles['item-child']}>{child.title}</a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
           </li>
         ))}
       </ul>
@@ -25,13 +32,10 @@ const Sidebar = ({ items }) => {
   };
   return (
     <aside className={styles.sidebar}>
-      <List items={items} isNested={false} />
+      <List items={items} />
     </aside>
   );
 };
 
-Sidebar.defaultProps = {
-  title: null,
-};
 
 export default Sidebar;
