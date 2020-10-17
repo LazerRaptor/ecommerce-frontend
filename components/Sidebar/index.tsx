@@ -7,18 +7,18 @@ const Sidebar = ({ items }) => {
       <ul className={styles.list}>
         {items.map((item) => (
           <li key={item.id} className={styles.item}>
-            <div className={styles['item-title']}>
+            <div className={styles["item-title"]}>
               <Link href={`/category/${item.slug}`}>
                 <a>{item.title}</a>
               </Link>
             </div>
-            <ul className={styles['list-nested']}>
+            <ul className={styles["list-nested"]}>
               <li className={styles.item}>
                 <ul>
-                  {item.children.map(child => (
+                  {item.children.map((child) => (
                     <li key={child.id} className={styles.item}>
                       <Link href={`/category/${child.slug}`}>
-                        <a className={styles['item-child']}>{child.title}</a>
+                        <a className={styles["item-child"]}>{child.title}</a>
                       </Link>
                     </li>
                   ))}
@@ -36,6 +36,5 @@ const Sidebar = ({ items }) => {
     </aside>
   );
 };
-
 
 export default Sidebar;

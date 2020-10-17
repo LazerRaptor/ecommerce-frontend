@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment } from "react";
 
 const Book = ({ book }) => {
   return (
@@ -8,8 +8,7 @@ const Book = ({ book }) => {
         <li>Length: {book.length}</li>
       </ul>
     </Fragment>
-  )
-}
-
+  );
+};
 
 export default Book;

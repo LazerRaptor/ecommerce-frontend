@@ -1,10 +1,8 @@
 import Link from "next/link";
-import StarRating from '../../../StarRating'
+import StarRating from "../../../StarRating";
 import Button from "../../../Button";
-import Spacer from '../../../Spacer'
+import Spacer from "../../../Spacer";
 import styles from "./index.module.scss";
-
-
 
 const Item = ({ item }) => {
   const src = item.front_image ? item.front_image.src : null;
@@ -26,7 +24,7 @@ const Item = ({ item }) => {
       </div>
       <Link href={`/products/${item.slug}`}>
         <a className={styles.link}>
-          <p className={styles['item-title']}>{item.title}</p>
+          <p className={styles["item-title"]}>{item.title}</p>
         </a>
       </Link>
       <StarRating grade="3.8" votes="232" />

@@ -1,26 +1,26 @@
-import { MdStarBorder, MdStar, MdStarHalf } from 'react-icons/md'
+import { MdStarBorder, MdStar, MdStarHalf } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
-import styles from './index.module.scss';
+import styles from "./index.module.scss";
 
 type IProps = {
-  grade: string | number,
-  votes: string | number,
-  size: string
-}
+  grade: string | number;
+  votes: string | number;
+  size: string;
+};
 
 const StarRating = ({ grade, votes, size }: IProps) => {
-  grade = Number(grade)
-  const gradeFloor = Math.floor(grade)
-  const gradeDecimal = grade - gradeFloor
+  grade = Number(grade);
+  const gradeFloor = Math.floor(grade);
+  const gradeDecimal = grade - gradeFloor;
   const halfStar = () => {
     if (gradeDecimal < 0.25) {
-      return <MdStarBorder />
+      return <MdStarBorder />;
     } else if (0.25 < gradeDecimal && gradeDecimal < 0.75) {
-      return <MdStarHalf />
+      return <MdStarHalf />;
     } else {
-      return <MdStar />
+      return <MdStar />;
     }
-  }
+  };
   return (
     <div className={styles.rating} style={{ fontSize: size }}>
       {[...Array(gradeFloor)].map(() => (
@@ -32,12 +32,11 @@ const StarRating = ({ grade, votes, size }: IProps) => {
       ))}
       <span className={styles.votes}>{votes}</span>
     </div>
-  )
-}
+  );
+};
 
-StarRating.defaultProps ={
-  size: '1rem',
-}
+StarRating.defaultProps = {
+  size: "1rem",
+};
 
-
-export default StarRating
+export default StarRating;

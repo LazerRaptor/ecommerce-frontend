@@ -23,7 +23,7 @@ const Navbar = (props) => {
       <ul className={styles["nav-end"]}>
         <li className={styles["nav-item"]}>
           <Link href="/account/login">
-            <a className={styles['nav-link']}>
+            <a className={styles["nav-link"]}>
               <RiUser3Line size="1.4em" />
               <span className={styles.caption}>Account</span>
             </a>
@@ -31,7 +31,7 @@ const Navbar = (props) => {
         </li>
         <li className={styles["nav-item"]}>
           <Link href="/cart">
-            <a className={styles['nav-link']}>
+            <a className={styles["nav-link"]}>
               <RiShoppingCartLine size="1.4em" />
               <span className={styles.caption}>Cart</span>
             </a>

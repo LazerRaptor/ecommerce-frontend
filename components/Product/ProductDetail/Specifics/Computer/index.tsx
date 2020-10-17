@@ -1,5 +1,4 @@
-import { Fragment } from 'react'
-
+import { Fragment } from "react";
 
 const Computer = ({ computer }) => {
   return (
@@ -10,7 +9,7 @@ const Computer = ({ computer }) => {
         <li>HDD: {computer.hdd}</li>
       </ul>
     </Fragment>
-  ) 
-}
+  );
+};
 
 export default Computer;

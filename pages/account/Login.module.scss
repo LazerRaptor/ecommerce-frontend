@@ -1,85 +1,86 @@
 $radius: 0;
-$border-color: hsla(0, 0%, 4%, .5);
-$font-size: .875em;
+$border-color: hsla(0, 0%, 4%, 0.5);
+$font-size: 0.875em;
 $input-padding: 1rem;
 
 .form-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .form {
-    width: 20rem;
+  width: 20rem;
 }
 
 .title {
-    font-size: 1.4rem;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 100;
-    padding: 1.5rem 0;
-    text-align: center;
+  font-size: 1.4rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 100;
+  padding: 1.5rem 0;
+  text-align: center;
 }
 
 .field {
-    width: 100%;
-    position: relative;
-    
-    .input {
-        padding: $input-padding;
-        border: 1px solid $border-color;
-        width: 100%;
-        border-radius: $radius;
-    }
+  width: 100%;
+  position: relative;
 
-    .input::placeholder {
-        font-size: $font-size;
-        opacity: 1;
-    }
+  .input {
+    padding: $input-padding;
+    border: 1px solid $border-color;
+    width: 100%;
+    border-radius: $radius;
+  }
+
+  .input::placeholder {
+    font-size: $font-size;
+    opacity: 1;
+  }
 }
 
 .btn-submit {
-    padding: .5rem 1.25rem; 
-    border: 1px solid $border-color;
-    border-radius: $radius;
-    cursor: pointer;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid $border-color;
+  border-radius: $radius;
+  cursor: pointer;
 
-    &:hover {
-        background: hsl(0, 0%, 21%);
-        color: hsl(0, 0%, 100%);
-    }
+  &:hover {
+    background: hsl(0, 0%, 21%);
+    color: hsl(0, 0%, 100%);
+  }
 }
 
 .visibility-toggler {
-    font-size: $font-size;
-    text-decoration: underline;
-    position: absolute;
-    right: .5rem;
-    top: calc(25% + .25rem);
-    cursor: pointer;
+  font-size: $font-size;
+  text-decoration: underline;
+  position: absolute;
+  right: 0.5rem;
+  top: calc(25% + 0.25rem);
+  cursor: pointer;
 }
 
 .label {
-    position: absolute;
-    top: calc(25% + .25rem);
-    left: .75rem;
-    font-size: $font-size;
+  position: absolute;
+  top: calc(25% + 0.25rem);
+  left: 0.75rem;
+  font-size: $font-size;
 
-    &:before {
-        content: attr(data-content);
-    }
+  &:before {
+    content: attr(data-content);
+  }
 }
 
 .label-focus {
-   position: absolute;
-   top: -1rem;
-   left: .75rem;
-   background: white;
-   padding: .25rem;
-   &:before {
-       content: attr(data-content);
-       font-size: $font-size;
-   }
+  position: absolute;
+  top: -1rem;
+  left: 0.75rem;
+  background: white;
+  padding: 0.25rem;
+  &:before {
+    content: attr(data-content);
+    font-size: $font-size;
+  }
 }

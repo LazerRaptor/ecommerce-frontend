@@ -1,6 +1,9 @@
 .grid-container {
   display: grid;
-  grid-template-columns: minmax(250px, 1.5fr) minmax(300px, 2fr) minmax(220px, 1fr);
+  grid-template-columns: minmax(250px, 1.5fr) minmax(300px, 2fr) minmax(
+      220px,
+      1fr
+    );
   column-gap: 2rem;
   font-size: 14px;
 }
@@ -17,5 +20,5 @@
 
 .btn-desc-toggler {
   text-decoration: underline;
-  margin: .75em 0;
+  margin: 0.75em 0;
 }

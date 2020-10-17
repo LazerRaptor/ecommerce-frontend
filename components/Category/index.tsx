@@ -1,7 +1,6 @@
-import { Fragment } from 'react';
-import Spacer from '../Spacer'
-import ProductList from '../../components/Product/ProductList'
-
+import { Fragment } from "react";
+import Spacer from "../Spacer";
+import ProductList from "../../components/Product/ProductList";
 
 const Category = ({ category, products }) => {
   return (
@@ -10,8 +9,7 @@ const Category = ({ category, products }) => {
       <Spacer y="1.4" />
       <ProductList products={products} />
     </Fragment>
-  )
-}
-
+  );
+};
 
 export default Category;

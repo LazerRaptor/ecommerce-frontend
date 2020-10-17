@@ -30,7 +30,7 @@ export const useCategory = (many = true, ...restArgs) => {
   }
   const { data, error } = useSWR(url, fetcher);
   const rv = {
-    [substitution]: data, // using type assertion to silence this. This may not be good...
+    [substitution]: data, // using type assertion to silence this. Well...
     isLoading: !error && !data,
     isError: error,
   } as A | B;
