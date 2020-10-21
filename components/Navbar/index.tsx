@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RiUser3Line, RiShoppingCartLine } from "react-icons/ri";
-import { HiMenu } from 'react-icons/hi'
+import { HiMenu } from "react-icons/hi";
 import BrandLogo from "../SVG/BrandLogo";
 import styles from "./index.module.scss";
 
@@ -9,7 +9,7 @@ const Navbar = (props) => {
     <nav className={styles.navbar}>
       <ul className={styles["nav-start"]}>
         <li className={styles["nav-item"]}>
-          <HiMenu size="1.6rem" onClick={() => props.toggleSidebar()} />
+          <HiMenu size="1.6em" onClick={() => props.toggleSidebar()} />
         </li>
         <li className={styles["nav-item"]}>
           <Link href="/">
@@ -24,7 +24,7 @@ const Navbar = (props) => {
         <li className={styles["nav-item"]}>
           <Link href="/account/login">
             <a className={styles["nav-link"]}>
-              <RiUser3Line size="1.6rem" />
+              <RiUser3Line size="1.6em" />
               <span className={styles.caption}>Account</span>
             </a>
           </Link>
@@ -32,7 +32,7 @@ const Navbar = (props) => {
         <li className={styles["nav-item"]}>
           <Link href="/cart">
             <a className={styles["nav-link"]}>
-              <RiShoppingCartLine size="1.6rem" />
+              <RiShoppingCartLine size="1.6em" />
               <span className={styles.caption}>Cart</span>
             </a>
           </Link>

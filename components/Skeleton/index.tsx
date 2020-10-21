@@ -1,8 +1,4 @@
-import BaseElement from './BaseElement';
-import SidebarSkeleton from './SidebarSkeleton';
+import BaseElement from "./BaseElement";
+import SidebarSkeleton from "./SidebarSkeleton";
 
-
-export {
-  BaseElement,
-  SidebarSkeleton
-}
+export { BaseElement, SidebarSkeleton };

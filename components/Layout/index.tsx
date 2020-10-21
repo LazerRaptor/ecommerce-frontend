@@ -1,7 +1,7 @@
 import { useState, Fragment } from "react";
 import Sidebar from "../Sidebar";
 import Navbar from "../Navbar";
-import { SidebarSkeleton } from '../Skeleton';
+import { SidebarSkeleton } from "../Skeleton";
 import { useCategory } from "../../lib/hooks/useCategory";
 import styles from "./index.module.scss";
 
@@ -15,20 +15,21 @@ const Layout = ({ children }) => {
         <Navbar toggleSidebar={toggleSidebar} />
         <div className={styles["content-area"]}>{children}</div>
       </div>
-      <div style={{ display: sidebarShown ? 'block' : 'none' }}>
-        {
-          isLoading ? (
-            <SidebarSkeleton/>
-          ) : (
-            <Sidebar 
-              items={categories} 
-              title="Shop By Category" 
-              hideSidebar={() => setSidebarShown(false)} 
-            />
-          )
-        }
+      <div style={{ display: sidebarShown ? "block" : "none" }}>
+        {isLoading ? (
+          <SidebarSkeleton />
+        ) : (
+          <Sidebar
+            items={categories}
+            title="Shop By Category"
+            hideSidebar={() => setSidebarShown(false)}
+          />
+        )}
       </div>
-      <div style={{ display: sidebarShown ? 'block' : 'none' }} className={styles['screen-shaded']}></div>
+      <div
+        style={{ display: sidebarShown ? "block" : "none" }}
+        className={styles["screen-shaded"]}
+      ></div>
     </Fragment>
   );
 };

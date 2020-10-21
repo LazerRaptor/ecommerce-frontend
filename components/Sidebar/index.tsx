@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MdClose } from "react-icons/md";
 import styles from "./index.module.scss";
 
-const Sidebar = ({ items, title=null, hideSidebar }) => {
+const Sidebar = ({ items, title = null, hideSidebar }) => {
   const List = ({ items }) => {
     return (
       <ul className={styles.list}>
@@ -34,7 +34,7 @@ const Sidebar = ({ items, title=null, hideSidebar }) => {
   return (
     <aside className={styles.sidebar}>
       <span onClick={() => hideSidebar()} className={styles.close}>
-        <MdClose size="1.6rem" />
+        <MdClose size="1.6em" />
       </span>
       <h1 className={styles.title}>{title}</h1>
       <List items={items} />
