@@ -1,9 +1,14 @@
 .sidebar {
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 18rem;
   overflow-x: hidden;
   overflow-y: auto;
-  font-size: 14px;
+  background: #fff;
+  padding: 2rem;
+  z-index: 99;
 }
 
 .list {
@@ -28,4 +33,17 @@
 
 .item-child:hover {
   text-decoration: underline;
+}
+
+
+.title {
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+
+.close {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  cursor: pointer;
 }

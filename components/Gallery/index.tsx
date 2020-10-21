@@ -2,7 +2,7 @@ import { useState } from "react";
 import ImageList from "./ImageList";
 import ImageDetail from "./ImageDetail";
 import Spacer from "../Spacer";
-import styles from "./index.module.scss";
+
 
 const Gallery = ({ images }) => {
   const [frontImage] = images.filter((img) => img.is_front_image);

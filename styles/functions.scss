@@ -1,0 +1,9 @@
+@use './variables.scss' as var;
+
+@function set-text-color($color) {
+    @if (lightness($color) > 60) {
+        @return var.$text-dark; 
+    } @else {
+        @return var.$text-light;
+    }
+}

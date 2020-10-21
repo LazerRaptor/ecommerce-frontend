@@ -1,22 +1,34 @@
+import { classnames } from '../../lib/utils/classnames';
+import styles from './index.module.scss';
+
+
 type Props = {
   title: string;
-  type?: "primary" | "info" | "warning" | "danger" | null;
-  size?: "xs" | "sm" | "base" | "lg" | "xl" | null;
-  rounded?: boolean;
+  variant?: "primary" | "info" | "warning" | "danger" | "success" | null;
+  size?: "xs" | "sm" | "lg" | "xl" | null;
+  isRounded?: boolean;
+  isSubmit?: boolean;
+  isFullWidth?: boolean;
 };
 
-const Button = (props: Props) => {
-  const rounded = props.rounded ? "rounded" : null;
-  const variant = ["btn", props.type, props.size, rounded]
-    .filter((prop) => prop)
-    .join(" btn-");
-  return <button className={variant}>{props.title}</button>;
+const Button = ({ title, variant=null, size=null, isRounded=false, isSubmit=false, isFullWidth=false }: Props) => {
+  const classes = {
+    [styles.btn]: true,
+    [styles.primary]: variant === 'primary', 
+    [styles.info]: variant === 'info', 
+    [styles.warning]: variant === 'warning', 
+    [styles.danger]: variant === 'danger', 
+    [styles.success]: variant === 'success', 
+    [styles.xs]: size === 'xs', 
+    [styles.sm]: size === 'sm', 
+    [styles.lg]: size === 'lg', 
+    [styles.xl]: size === 'xl', 
+    [styles.rounded]: isRounded, 
+    [styles.fullwidth]: isFullWidth, 
+  }
+  const myClass = classnames(classes)
+  return <button className={myClass} type={isSubmit ? "submit" : null}>{title}</button>;
 };
 
-Button.defaultProps = {
-  variant: null,
-  size: null,
-  rounded: true,
-};
 
 export default Button;

@@ -2,7 +2,12 @@ import { useState } from 'react';
 
 
 export const useForm = (initialValues) => {
-  const [formState, setFormState] = useState({ ...initialValues })
+  const initState = {
+    ...initialValues,
+    formIsValid: false,
+    passwordShown: false
+  }
+  const [formState, setFormState] = useState({ ...initState })
   const handleOnChange = (e) => {
     const target = e.target
     const obj = { [target.name]: target.value }
@@ -12,10 +17,12 @@ export const useForm = (initialValues) => {
     e.preventDefault()
     console.log(formState)
   }
+  const toggleVisibility = () => setFormState(!formState.passwordShown)
   return {
     formState,
     handleOnChange, 
-    handleOnSubmit
+    handleOnSubmit,
+    toggleVisibility
   }
 }
 

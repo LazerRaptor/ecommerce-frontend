@@ -21,8 +21,8 @@ const BrandLogo = (props: Props) => {
 };
 
 const defaultProps = {
-  width: 100,
-  height: 50,
+  width: 110,
+  height: 55,
 };
 
 BrandLogo.defaultProps = defaultProps;

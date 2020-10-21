@@ -1,26 +1,32 @@
 import { useState } from "react";
-import styles from "./index.module.scss";
+import { classnames } from '../../lib/utils/classnames';
+import styles from "./Field.module.scss";
 
 
 const Field = ({ value, label, type, name, onChange, children=null }) => {
   const [inFocus, setInFocus] = useState(false);
   const toggleFocus = (inFocus: boolean) => setInFocus(inFocus)
-  const variant = inFocus ? [styles.input, styles['input-focus']].join(' ') : `${styles.input}` 
+  const cls = classnames({
+    [styles.label]: true,
+    [styles['label-focus']]: inFocus,
+  })
   return (
     <div className={styles.field}>
-      <label>{label}</label>
+      <label className={cls}>{label}</label>
       <input 
         type={type} 
         value={value} 
         name={name}
-        className={variant} 
+        className={styles.input} 
         onChange={(e) => onChange(e)}
-        onFocus={(e) => toggleFocus(true)} 
-        onBlur={(e) => toggleFocus(false)}
+        onFocus={() => toggleFocus(true)} 
+        onBlur={(e) => toggleFocus(true && !!e.target.value)}
       />
       {children}
     </div>
   )
 }
 
-export default Field;
+export {
+  Field, 
+};
