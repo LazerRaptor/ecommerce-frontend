@@ -1,76 +1,46 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 import styles from './ImageDetail.module.scss';
 
 
-const ImageDetail = ({ image, width=320, height=320, zoom=2 }) => {
-
-  const myRef = useRef(null)
-  const [rectProps, setRectProps] = useState({
-    x: 0,
-    y: 0,
-    h: height,
-    w: width
-  })
-  useEffect(() => {
-    let params = myRef.current.getBoundingClientRect()
-    setRectProps({
-      x: params.x,
-      y: params.y,
-      h: params.height,
-      w: params.width
-    })
-  }, [])
- 
-  const [mousePosition, setMousePosition] = useState({
-    x: 0, 
-    y: 0
-  })
-  const moveMagnifyingGlass = (e) => {
-    setMousePosition({x: e.clientX, y: e.clientY})
+const ImageDetail = ({ image, width=600, height=600, zoom=2 }) => {
+  const [magnifierShown, setMagnifierShown] = useState(false);
+  const [offset, setOffset] = useState([0, 0])
+  const calcOffset = (e) => {
+    const target = e.target
+    const rect = target.getBoundingClientRect()
+    let offsetX = (e.clientX - rect.x) / rect.width * 100
+    let offsetY = (e.clientY - rect.y) / rect.height * 100
+    return [offsetX, offsetY]   
   }
-  const translateToPercentages = (cursorX, cursorY, rectX, rectY, height, width) => {
-    /** The first two args identify cursor position, others - container element's props */  
-    const deltaX = cursorX - rectX
-    const deltaY = cursorY - rectY
-    console.log(deltaX, deltaY)
-    const xRatio = deltaX / width * 100
-    const yRatio = deltaY / height * 100
-    return [xRatio, yRatio]
-  }
-  const imgPosition = () => {
-    const [x, y] = translateToPercentages(
-      mousePosition.x, 
-      mousePosition.y, 
-      rectProps.x, 
-      rectProps.y, 
-      rectProps.h, 
-      rectProps.w
-    )
-    return [x, y]
+  const handleOnMouseMove = (e) => {
+    const [x, y] = calcOffset(e)
+    setOffset([x, y])
   }
   return (
-    <div className={styles['image-wrapper']}>
-      <div>
+    <div className={styles['image-detail']}>
+      <div className={styles['image-wrapper']}>
         <img
           src={image.src}
           alt={image.alt}
           width={width}
           height={height}
-          className="contain"
+          className="object-contain"
+          onMouseOver={() => setMagnifierShown(true)}
+          onMouseLeave={() => setMagnifierShown(false)}
+          onMouseMove={(e) => handleOnMouseMove(e)}
         />
       </div>
       <div 
         className={styles['magnifier-wrapper']}
-        onMouseMove={(e) => moveMagnifyingGlass(e)}
-        ref={myRef}
+        style={{ display: magnifierShown ? 'block' : 'none' }}
       >
         <img 
-          src={image.src} 
+          src={image.src}
           alt={image.alt}
-          style={{ objectPosition: `${imgPosition()[0]}% ${imgPosition()[1]}%`}}
-          className={styles.magnifier}
-          width={width * zoom}
-          height={height * zoom}
+          width={width*zoom}
+          height={height}
+          className="object-none"
+          style={{ objectPosition: `${offset[0]}% ${offset[1]}%` }}
         />
       </div>
     </div>

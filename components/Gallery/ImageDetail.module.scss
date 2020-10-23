@@ -1,18 +1,18 @@
-.image-wrapper {
+.image-detail {
     position: relative;
+    width: 100%;
+}
+
+.image-wrapper {
+
 }
 
 .magnifier-wrapper {
     position: absolute;
-    top: 0; 
+    top: 0;
     left: 0;
-    width: 320px;
-    height: 320px;
-    z-index: 9;
-    border: 1px solid transparent;
-}
-
-.magnifier {
-    object-fit: cover;
-    pointer-events: none;
+    transform: translateX(100%);
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 0 12px hsla(0, 0%, 0%, .3);
 }

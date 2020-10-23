@@ -34,10 +34,22 @@
 }
 
 /* Images */
-.contain {
+.object-contain {
   object-fit: contain;
 }
 
-.scale-down {
+.object-scale-down {
   object-fit: scale-down;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.object-none {
+  object-fit: none;
+}
+
+.object-fill {
+  object-fit: fill;
 }
