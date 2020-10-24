@@ -1,18 +1,27 @@
 .image-detail {
     position: relative;
-    width: 100%;
 }
 
 .image-wrapper {
 
+    .image {
+
+    }
 }
 
-.magnifier-wrapper {
+
+.zoom {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateX(100%);
-    padding: 1rem;
-    background: #fff;
-    box-shadow: 0 0 12px hsla(0, 0%, 0%, .3);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border: 1px solid hsl(0, 0%, 43%);
+
+    .image-zoomed {
+        width: 100%;
+        height: 100%;
+    }
 }
+

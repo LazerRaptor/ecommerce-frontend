@@ -10,7 +10,7 @@ const ImageList = ({ images, width, height, setActiveImage }) => {
             width={width}
             height={height}
             onClick={(e) => setActiveImage(e)}
-            className="scale-down"
+            className="object-scale-down"
           />
         </li>
       ))}
