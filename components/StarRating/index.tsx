@@ -30,7 +30,7 @@ const StarRating = ({ grade, votes, size }: IProps) => {
       {[...Array(4 - gradeFloor)].map(() => (
         <MdStarBorder key={uuidv4()} />
       ))}
-      <span className={styles.votes}>{votes}</span>
+      <span className={styles.votes}>{votes} reviews</span>
     </div>
   );
 };

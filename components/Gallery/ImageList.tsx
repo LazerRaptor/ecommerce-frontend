@@ -1,15 +1,28 @@
 import { v4 as uuidv4 } from "uuid";
-const ImageList = ({ images, width, height, setActiveImage }) => {
+import styles from './ImageList.module.scss';
+
+
+const ImageList = ({ images, width, height, activeImage, setActiveImage }) => {
+  const handleOnClick = (e) => {
+    setActiveImage(e)
+  }
+  const classes = (src) => {
+    let cls = styles['list-item']
+    if (src === activeImage.src) {
+      cls += ` ${styles['item-active']}`
+    }
+    return cls
+  }
   return images.length > 1 ? (
     <ul>
       {images.map((image) => (
-        <li key={uuidv4()}>
+        <li className={classes(image.src)} key={uuidv4()}>
           <img
             src={image.src}
             alt={image.alt}
             width={width}
             height={height}
-            onClick={(e) => setActiveImage(e)}
+            onClick={(e) => handleOnClick(e)}
             className="object-scale-down"
           />
         </li>

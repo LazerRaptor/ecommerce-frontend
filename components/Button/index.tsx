@@ -8,6 +8,7 @@ type Props = {
   isRounded?: boolean;
   isSubmit?: boolean;
   isFullWidth?: boolean;
+  isBold?: boolean;
 };
 
 const Button = ({
@@ -17,6 +18,7 @@ const Button = ({
   isRounded = false,
   isSubmit = false,
   isFullWidth = false,
+  isBold = false
 }: Props) => {
   const classes = {
     [styles.btn]: true,
@@ -31,6 +33,7 @@ const Button = ({
     [styles.xl]: size === "xl",
     [styles.rounded]: isRounded,
     [styles.fullwidth]: isFullWidth,
+    [styles.bold] : isBold
   };
   const myClass = classnames(classes);
   return (

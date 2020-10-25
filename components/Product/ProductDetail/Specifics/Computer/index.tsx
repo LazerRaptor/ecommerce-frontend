@@ -1,14 +1,18 @@
 import { Fragment } from "react";
+import styles from '../index.module.scss';
 
 const Computer = ({ computer }) => {
+  const specs = [
+    ['Central Processor', computer.cpu],
+    ['Graphics', computer.gpu],
+    ['Hard Drive', computer.hdd]
+  ]
   return (
-    <Fragment>
-      <ul>
-        <li>CPU: {computer.cpu}</li>
-        <li>GPU: {computer.gpu}</li>
-        <li>HDD: {computer.hdd}</li>
-      </ul>
-    </Fragment>
+      specs.map(spec => (
+        <div className={styles['spec-row']}>
+          <span data-content={spec[0]}></span><span>{spec[1]}</span>
+        </div>
+      ))
   );
 };
 

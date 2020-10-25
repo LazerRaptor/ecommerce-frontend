@@ -10,9 +10,10 @@ const Gallery = ({ images }) => {
     <div className="flex">
       <ImageList
         images={images}
+        activeImage={activeImage}
         setActiveImage={(e) =>
           setActiveImage(
-            images.filter((img) => img.src === e.currentTarget.src)[0]
+            images.filter((img) => img.src === e.target.src)[0]
           )
         }
       />

@@ -6,7 +6,7 @@ const ImageDetail = ({ image, width=480, height=480, zoom=4 }) => {
   /** State */
   const [zoomActive, setZoomActive] = useState(false)
   const [offset, setOffset] = useState([50, 50])
-  
+
   /** Event handlers && helper functions */
   const handleOnMouseOver = (e) => {
     setZoomActive(true)

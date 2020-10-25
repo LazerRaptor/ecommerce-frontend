@@ -4,6 +4,18 @@
   display: flex;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
 .flex-y-center {
   align-items: center;
 }
