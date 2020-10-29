@@ -19,3 +19,13 @@ $input-padding: 1rem;
   font-size: 0.925rem;
   margin: 1rem 0;
 }
+
+.visibility-toggler {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: .9em;
+  text-decoration: underline;
+  cursor: pointer;
+}

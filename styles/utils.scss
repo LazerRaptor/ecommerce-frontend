@@ -1,3 +1,5 @@
+@use './variables.scss' as vars;
+
 /* Flex */
 
 .flex {
@@ -43,6 +45,35 @@
 
 .font-semibold {
   font-weight: 600;
+}
+
+/* Colors */
+.text-dark {
+  color: vars.$dark;
+}
+
+.text-light {
+  color: vars.$light;
+}
+
+.text-primary {
+  color: vars.$primary;
+}
+
+.text-info {
+  color: vars.$info;
+}
+
+.text-success {
+  color: vars.$success;
+}
+
+.text-danger {
+  color: vars.$danger;
+}
+
+.text-warning {
+  color: vars.$warning;
 }
 
 /* Images */

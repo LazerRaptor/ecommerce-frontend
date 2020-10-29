@@ -46,3 +46,10 @@ button:not(class) {
   margin: 0;
   cursor: pointer;
 }
+
+/* Forms */
+
+fieldset {
+  border: none;
+  padding: 0;
+}

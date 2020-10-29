@@ -1,0 +1,43 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 18rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #fff;
+  padding: 2rem;
+  z-index: 99;
+}
+
+.list {
+  list-style: none;
+  a {
+    font-weight: 300;
+    font-size: 15px;
+  }
+}
+
+.list-nested {
+  a {
+    text-decoration: none;
+    font-weight: 300;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.title {
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+
+.close {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  cursor: pointer;
+}

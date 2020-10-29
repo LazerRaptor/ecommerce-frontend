@@ -1,4 +1,4 @@
-import ProductList from "../components/Product/ProductList";
+import ProductList from "../components/product/ProductListView";
 import { ProductAPI } from "../lib/api/product";
 
 const Home = ({ featured }) => {

@@ -1,4 +1,4 @@
-import ProductDetail from "../../components/Product/ProductDetail";
+import ProductDetail from "../../components/product/ProductDetailView";
 import { ProductAPI } from "../../lib/api/product";
 
 const Products = ({ product }) => {

@@ -1,0 +1,38 @@
+@use '../../../../styles/variables.scss' as vars;
+
+
+.spec-row {
+    display: flex;
+    font-size: 14px;
+    padding: 1rem 0;
+    
+    :first-child {
+        width: 50%;
+        position: relative;
+        display: inline-block;
+
+        &::before {
+            position: absolute;
+            color: vars.$gray;
+            content: attr(data-content);
+            background: #fff;
+            z-index: 3;
+            padding-right: .5rem;
+        }
+        
+        &::after {
+            position: absolute;
+            width: 100%;
+            content: "";
+            left: 0;
+            top: 1rem;
+            border-bottom: 1px dashed vars.$light-gray;
+            z-index: 1;
+        }
+    }
+
+    :last-child {
+        margin-left: 1rem;
+        width: 50%;
+    }
+}

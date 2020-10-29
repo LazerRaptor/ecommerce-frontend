@@ -1,4 +1,4 @@
-import Category from "../../components/Category";
+import Category from "../../components/category";
 import { CategoryAPI } from "../../lib/api/categories";
 import { ICategory } from "../../lib/utils/interfaces";
 
