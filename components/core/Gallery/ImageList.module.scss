@@ -1,9 +1,0 @@
-@use '../../../styles/variables.scss' as vars;
-
-.list-item {
-    margin: 8px 0;
-}
-
-.item-active {
-    box-shadow: 0 0 0 3px vars.$primary;
-}

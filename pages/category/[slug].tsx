@@ -1,9 +1,8 @@
-import Category from "../../components/category";
 import { CategoryAPI } from "../../lib/api/categories";
 import { ICategory } from "../../lib/utils/interfaces";
 
-const CategoryPage = ({ category, relatedProducts }) => {
-  return <Category category={category} products={relatedProducts} />;
+const CategoryPage = ({ category, content }) => {
+  return null;
 };
 
 export default CategoryPage;
@@ -18,11 +17,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const category = await CategoryAPI.getDetail(params.slug);
-  const relatedProducts = await CategoryAPI.getRelatedProducts(params.slug);
+  const content = await CategoryAPI.getContent(params.slug);
   return {
     props: {
       category,
-      relatedProducts,
+      content,
     },
   };
 }

@@ -1,8 +1,8 @@
 import useSWR from "swr";
 import { fetcher } from "../utils/fetcher";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL } from "../constants";
 
-export const useProduct = (field = "featured", value = true) => {
+const useProduct = (field = "featured", value = true) => {
   let url = `${BASE_URL}/products/?${field}=${value}`;
   const { data, error } = useSWR(url, fetcher);
 
@@ -12,3 +12,5 @@ export const useProduct = (field = "featured", value = true) => {
     isError: error,
   };
 };
+
+export { useProduct };

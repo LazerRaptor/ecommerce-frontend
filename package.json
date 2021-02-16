@@ -9,23 +9,24 @@
     "test": "jest"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "@fullhuman/postcss-purgecss": "^4.0.0",
     "@types/jest": "^26.0.14",
     "@types/uuid": "^8.3.0",
     "autoprefixer": "^10.0.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-prettier": "^7.2.0",
     "jest": "^26.5.3",
-    "next": "10.0.0",
-    "postcss-flexbugs-fixes": "^4.2.1",
+    "next": "10.0.6",
+    "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-icons": "^3.11.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-icons": "^4.2.0",
     "sass": "^1.26.10",
+    "styled-components": "^5.2.1",
     "stylelint-config-recommended": "^3.0.0",
-    "swr": "^0.3.4",
+    "swr": "^0.4.2",
     "uuidv4": "^6.2.3"
   },
   "devDependencies": {
@@ -33,9 +34,10 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
     "@types/node": "^14.6.0",
-    "@types/react": "^16.9.46",
+    "@types/react": "^17.0.2",
     "babel-jest": "^26.5.2",
-    "prettier": "2.1.2",
+    "babel-plugin-styled-components": "^1.12.0",
+    "prettier": "2.2.1",
     "typescript": "^4.0.2"
   }
 }

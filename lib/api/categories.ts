@@ -1,17 +1,30 @@
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL } from "../constants";
 
-export const CategoryAPI = {
+const URLPatterns = {
+  detail: (slug) => `${BASE_URL}/categories/${slug}.json`,
+  list: () => `${BASE_URL}/categories.json`,
+  content: (slug) => `${BASE_URL}/categories/${slug}/content.json`,
+  tree: () => `${BASE_URL}/category-tree.json`,
+};
+
+const CategoryAPI = {
   getDetail: async (slug) => {
-    return (await axios.get(`${BASE_URL}/categories/${slug}`)).data;
+    const response = await axios.get(URLPatterns.detail(slug));
+    return response.data;
   },
   getList: async () => {
-    return (await axios.get(`${BASE_URL}/categories`)).data;
+    const response = await axios.get(URLPatterns.list());
+    return response.data;
   },
-  getRoot: async () => {
-    return (await axios.get(`${BASE_URL}/categories/root`)).data;
+  getContent: async (slug) => {
+    const response = await axios.get(URLPatterns.content(slug));
+    return response.data;
   },
-  getRelatedProducts: async (slug) => {
-    return (await axios.get(`${BASE_URL}/categories/${slug}/products`)).data;
+  getTree: async () => {
+    const response = await axios.get(URLPatterns.tree());
+    return response.data;
   },
 };
+
+export { CategoryAPI, URLPatterns };

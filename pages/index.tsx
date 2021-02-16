@@ -1,19 +1,13 @@
-import ProductList from "../components/product/ProductListView";
 import { ProductAPI } from "../lib/api/product";
+import ListView from "../components/product/ListView";
 
-const Home = ({ featured }) => {
-  return (
-    <div>
-      <ProductList products={featured} />
-    </div>
-  );
-};
+const Home = ({ items }) => <ListView items={items} />;
 
 export async function getStaticProps() {
-  const featured = await ProductAPI.get("featured", true);
+  const items = await ProductAPI.getList("featured", true);
   return {
     props: {
-      featured,
+      items,
     },
   };
 }

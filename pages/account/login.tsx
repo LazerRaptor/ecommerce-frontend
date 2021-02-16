@@ -1,29 +1,20 @@
-import { useState } from 'react';
 import Link from "next/link";
-import { Form, Field, useForm } from "../../components/core/Form";
+import { Form, Field, useForm } from "../../components/common/Form";
 import styles from "./Login.module.scss";
-
-const RegLink = () => (
-    <p className={styles.link}>
-      <Link href="/account/register">
-        <a>Don't have an account? Sign up!</a>
-      </Link>
-    </p>
-);
-
-const VisibilityToggler = ({ hidden, toggle }) => (
-  <span onClick={() => toggle(!hidden)} className={styles['visibility-toggler']}>
-    {hidden ? "Show" : "Hide"}
-  </span>
-)
 
 const Login = () => {
   const initialValues = {
     email: "",
     password: "",
   };
-  const { formState, handleOnChange, handleOnSubmit } = useForm(initialValues);
-  const [hidden, setHidden] = useState(true);
+  const {
+    email,
+    password,
+    passwordShown,
+    handleOnChange,
+    handleOnSubmit,
+    toggleVisibility,
+  } = useForm(initialValues);
 
   return (
     <div className={styles["form-container"]}>
@@ -32,22 +23,33 @@ const Login = () => {
         legend="Sign In To Your Account"
       >
         <Field
-          value={formState.email}
+          value={email}
           name="email"
           type="email"
           label="Email"
           onChange={handleOnChange}
         />
+
         <Field
-          value={formState.password}
+          value={password}
           name="password"
-          type={hidden ? "password" : "text"}
+          type={passwordShown ? "password" : "text"}
           label="Password"
           onChange={handleOnChange}
         >
-          <VisibilityToggler hidden={hidden} toggle={setHidden} />
+          <span
+            className={styles["visibility-toggler"]}
+            onClick={() => toggleVisibility()}
+          >
+            {passwordShown ? "Show" : "Hide"}
+          </span>
         </Field>
-        <RegLink />
+
+        <p className={styles.link}>
+          <Link href="/account/register">
+            <a>Don't have an account? Sign up!</a>
+          </Link>
+        </p>
       </Form>
     </div>
   );

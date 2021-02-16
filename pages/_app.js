@@ -1,11 +1,15 @@
-import Layout from "../components/core/Layout";
-import "../styles/index.scss";
+import Layout from "../components/common/Layout";
+import { LayoutContextProvider } from "../lib/contexts/layoutContext";
+import { GlobalStyle } from "../styles/global";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <LayoutContextProvider>
+      <Layout>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </Layout>
+    </LayoutContextProvider>
   );
 }
 

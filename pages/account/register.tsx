@@ -1,20 +1,6 @@
 import Link from "next/link";
-import { useState } from "react";
-import { Form, Field, useForm } from "../../components/core/Form";
+import { Form, Field, useForm } from "../../components/common/Form";
 import styles from "./Login.module.scss";
-
-const RegLink = () => (
-  <p className={styles.link}>
-    <Link href="/account/register">
-      <a>Already have an account? Sign in!</a>
-    </Link>
-  </p>
-);
-const VisibilityToggler = ({ hidden, toggle }) => (
-  <span onClick={() => toggle(!hidden)} className={styles['visibility-toggler']}>
-    {hidden ? "Show" : "Hide"}
-  </span>
-)
 
 const Registration = () => {
   const initialValues = {
@@ -22,43 +8,58 @@ const Registration = () => {
     password: "",
     password2: "",
   };
-  const { formState, handleOnChange, handleOnSubmit } = useForm(initialValues);
-  const [hidden, setHidden] = useState(true);
-  const validatePasswordMatch = (value: string) => {
-    console.log(value)
-  }
-
+  const {
+    email,
+    password,
+    password2,
+    passwordShown,
+    handleOnChange,
+    handleOnSubmit,
+    toggleVisibility,
+  } = useForm(initialValues);
   return (
     <div className={styles["form-container"]}>
       <Form
         handleOnSubmit={(e) => handleOnSubmit(e)}
-        legend="Sign In To Your Account"
+        legend="Create a New Account"
       >
         <Field
-          value={formState.email}
+          value={email}
           name="email"
           type="email"
           label="Email"
           onChange={handleOnChange}
         />
+
         <Field
-          value={formState.password}
+          value={password}
           name="password"
-          type={hidden ? "password" : "text"}
+          type={passwordShown ? "password" : "text"}
           label="Password"
           onChange={handleOnChange}
         >
-          <VisibilityToggler hidden={hidden} toggle={setHidden} />
+          <span
+            className={styles["visibility-toggler"]}
+            onClick={() => toggleVisibility()}
+          >
+            {passwordShown ? "Show" : "Hide"}
+          </span>
         </Field>
+
         <Field
-          value={formState.password2}
+          value={password2}
           name="password2"
-          type={hidden ? "password" : "text"}
+          type={passwordShown ? "password" : "text"}
           label="Repeat Password"
           onChange={handleOnChange}
-          validate={(value) => validatePasswordMatch(value)}
+          pattern={password}
         ></Field>
-        <RegLink />
+
+        <p className={styles.link}>
+          <Link href="/account/login">
+            <a>Already have an account? Sign in!</a>
+          </Link>
+        </p>
       </Form>
     </div>
   );
