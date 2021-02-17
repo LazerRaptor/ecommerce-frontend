@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { LayoutContext } from "../../../lib/contexts/layoutContext";
 import Sidebar from "../../ui/Sidebar";
 import Navbar from "../../ui/Navbar";
+import Spacer from "../../ui/Spacer";
 
 const Container = styled.div`
   height: 100vh;
@@ -32,6 +33,7 @@ const Layout = ({ children }) => {
   return (
     <Container>
       <Navbar />
+      <Spacer y={4} />
       <Sidebar />
       <Main>{children}</Main>
       {screenshade}

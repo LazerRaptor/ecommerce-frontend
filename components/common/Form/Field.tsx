@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { setClassname } from "../../../lib/utils/setClassname";
 import styles from "./Field.module.scss";
 
 const Field = ({
@@ -16,10 +15,8 @@ const Field = ({
   const [inFocus, setInFocus] = useState(false);
   const handleOnFocus = () => setInFocus(true);
   const handleOnBlur = (e) => setInFocus(false || !!e.target.value);
-  const cls = setClassname({
-    [styles.label]: true,
-    [styles["label-focus"]]: inFocus,
-  });
+  let cls = styles.label 
+  if (inFocus) cls += styles["label-focus"]
   return (
     <div className={styles.field}>
       <label className={cls}>{label}</label>

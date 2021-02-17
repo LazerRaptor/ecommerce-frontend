@@ -1,7 +1,16 @@
+import Head from "next/head";
+import { Fragment } from "react";
 import DetailView from "../../components/product/DetailView";
 import { ProductAPI } from "../../lib/api/product";
 
-const Products = ({ product }) => <DetailView product={product} />;
+const Products = ({ product }) => (
+  <Fragment>
+    <Head>
+      <title>{product.title}</title>
+    </Head>
+    <DetailView product={product} />;
+  </Fragment>
+)
 
 export async function getStaticPaths() {
   const response = await ProductAPI.getProductsStaticPaths();

@@ -1,20 +1,27 @@
 import { useState } from "react";
-import styles from "./ImageDetail.module.scss";
+import Image from "next/image";
 import styled from "styled-components";
 
-const ImageDetail = ({ image, width = 480, height = 480, zoom = 4 }) => {
-  /** State */
+
+const Container = styled.div`
+  position: relative;
+`;
+
+const Figure = styled.figure``;
+const Zoom = styled.figure`
+  display: ${props => props.active ? "block" : "none"};
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border: 1px solid hsl(0, 0%, 43%);
+`;
+
+const ImageDetail = ({ image, width = 480, height = 480 }) => {
   const [zoomActive, setZoomActive] = useState(false);
   const [offset, setOffset] = useState([50, 50]);
-
-  /** Event handlers && helper functions */
-  const handleOnMouseOver = (e) => {
-    setZoomActive(true);
-  };
-
-  const handleOnMouseLeave = (e) => {
-    setZoomActive(false);
-  };
 
   const calcOffset = (e) => {
     const rect = e.target.getBoundingClientRect();
@@ -26,37 +33,34 @@ const ImageDetail = ({ image, width = 480, height = 480, zoom = 4 }) => {
   const handleOnMouseMove = (e) => {
     setOffset(calcOffset(e));
   };
+
   return (
-    <div className={styles["image-detail"]}>
-      <figure className={styles["image-wrapper"]}>
-        <img
+    <Container>
+      <Figure>
+        <Image
           src={image.src}
           alt={image.alt}
           width={width}
           height={height}
-          onMouseOver={(e) => handleOnMouseOver(e)}
-          onMouseLeave={(e) => handleOnMouseLeave(e)}
+          onMouseOver={() => setZoomActive(true)}
+          onMouseLeave={() => setZoomActive(false)}
           onMouseMove={(e) => handleOnMouseMove(e)}
-          className={styles.image}
+          objectFit="contain"
         />
-      </figure>
-      <figure
-        className={styles.zoom}
-        style={{
-          display: zoomActive ? "block" : "none",
-        }}
-      >
+      </Figure>
+      <Zoom active={zoomActive}>
         <div
-          className={styles["image-zoomed"]}
           style={{
+            width: "100%",
+            height: "100%",
             backgroundImage: `url("${image.src}")`,
-            backgroundSize: `${width * zoom}px ${height * zoom}px`,
+            backgroundSize: "250%",
             backgroundRepeat: "no-repeat",
             backgroundPosition: `${offset[0]}% ${offset[1]}%`,
           }}
         ></div>
-      </figure>
-    </div>
+      </Zoom>
+    </Container>
   );
 };
 

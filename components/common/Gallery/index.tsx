@@ -1,23 +1,29 @@
 import { useState } from "react";
+import styled from "styled-components";
 import ImageList from "./ImageList";
 import ImageDetail from "./ImageDetail";
 import Spacer from "../../ui/Spacer";
 
+
+const Container = styled.div`
+  display: flex;
+`;
+
 const Gallery = ({ images }) => {
-  const [showcaseImage] = images.filter((img) => img.is_showcase);
-  const [activeImage, setActiveImage] = useState(showcaseImage);
+  const [showcase] = images.filter(img => img.is_showcase)
+  const initialValue = showcase ? showcase : images.shift()
+
+  const [selectedImage, setSelected] = useState(initialValue)
   return (
-    <div className="flex">
+    <Container>
       <ImageList
         images={images}
-        activeImage={activeImage}
-        setActiveImage={(e) =>
-          setActiveImage(images.filter((img) => img.src === e.target.src)[0])
-        }
+        select={setSelected}
+        selected={selectedImage}
       />
       {images.length > 1 ? <Spacer x="1.5" /> : null}
-      <ImageDetail image={activeImage} />
-    </div>
+      <ImageDetail image={selectedImage} />
+    </Container>
   );
 };
 
