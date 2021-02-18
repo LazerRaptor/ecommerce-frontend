@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Gallery = ({ images }) => {
   const [showcase] = images.filter(img => img.is_showcase)
-  const initialValue = showcase ? showcase : images.shift()
+  const initialValue = showcase || images[0]
 
   const [selectedImage, setSelected] = useState(initialValue)
   return (

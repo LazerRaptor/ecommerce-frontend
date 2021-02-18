@@ -1,14 +1,13 @@
-import Layout from "../components/common/Layout";
-import { LayoutContextProvider } from "../lib/contexts/layoutContext";
+import { Fragment } from "react";
 import { GlobalStyle } from "../styles/global";
+import { LayoutContextProvider } from "../lib/contexts/layoutContext";
+
 
 function MyApp({ Component, pageProps }) {
   return (
     <LayoutContextProvider>
-      <Layout>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </Layout>
+      <GlobalStyle />
+      <Component {...pageProps} />
     </LayoutContextProvider>
   );
 }

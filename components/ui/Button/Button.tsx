@@ -5,7 +5,9 @@ type Props = {
   size: number | string,
   background?: string,
   color?: string,
-  bold?: boolean
+  bold?: boolean,
+  type?: string,
+  radius?: string,
 }
 
 const Btn = styled.button`
@@ -13,8 +15,9 @@ const Btn = styled.button`
   color: ${props => props.color};
   font-weight: ${props => props.bold ? 600 : 400};
   font-size: ${props => props.size}px;
+  border-radius: ${props => props.radius};
   border: 0;
-  padding: .75em 1.5em;
+  padding: .75em 1em;
   cursor: pointer;
 `;
 
@@ -24,12 +27,16 @@ const Button = ({
   background = "#000", 
   color = "#fff", 
   bold = true,
+  type = "",
+  radius = "4px"
 } : Props ) => (
   <Btn
     size={size}
     background={background}
     color={color}
     bold={bold}
+    type={type}
+    radius={radius}
   >
     {title}
   </Btn>

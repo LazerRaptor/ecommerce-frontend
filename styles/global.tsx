@@ -1,12 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI",
-    "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif;
-    font-weight: 400;
-  }
-  
+
   /* Box sizing rules */
   *,
   *::before,
@@ -44,6 +39,8 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI",
+    "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif;
   }
 
   /* Remove list styles on ul, ol elements */

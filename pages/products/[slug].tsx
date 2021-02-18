@@ -1,15 +1,13 @@
-import Head from "next/head";
 import { Fragment } from "react";
+import Layout from "../../components/common/Layout";
 import DetailView from "../../components/product/DetailView";
 import { ProductAPI } from "../../lib/api/product";
 
+
 const Products = ({ product }) => (
-  <Fragment>
-    <Head>
-      <title>{product.title}</title>
-    </Head>
+  <Layout title={product.title}>
     <DetailView product={product} />;
-  </Fragment>
+  </Layout>
 )
 
 export async function getStaticPaths() {
