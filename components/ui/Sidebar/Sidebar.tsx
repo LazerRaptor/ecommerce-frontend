@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { LayoutContext } from "../../../lib/contexts/layoutContext";
@@ -50,13 +50,13 @@ const Title = styled.h1`
 `;
 
 const CategoryList = ({ categories, nested = false }) => {
-  return categories ? (
+  return !!categories ? (
     <List>
       {categories.map((category) => (
         <ListItem nested={nested} key={category.id}>
           <Link
             href={{
-              pathname: "/categories/[slug]",
+              pathname: "/category/[slug]",
               query: { slug: category.slug },
             }}
           >
@@ -72,12 +72,12 @@ const CategoryList = ({ categories, nested = false }) => {
 };
 
 const Sidebar = () => {
-  let { categories, isLoading } = useCategory("tree");
+  let { data, isLoading } = useCategory("tree");
   const { sidebar, setSidebar } = useContext(LayoutContext);
   let categoryView = isLoading ? (
     <Skeleton />
   ) : (
-    <CategoryList categories={categories} />
+    <CategoryList categories={data} />
   );
   return (
     <Aside show={sidebar}>

@@ -51,7 +51,9 @@ const Panel = styled.div`
 `;
 
 const ListItem = ({ item }) => {
-  const [image] = item.images.filter((img) => img.is_showcase);
+  let [image] = item.images.filter((img) => img.is_showcase);
+  // if no image is marked as showcase, pick the first one
+  image = image || item.images[0]
   const [hover, setHover] = useState(false);
   return (
     <Card
@@ -73,7 +75,7 @@ const ListItem = ({ item }) => {
               width={240}
               height={240}
               quality={100}
-              objectFit="initial"
+              objectFit="contain"
             />
           </Anchor>
         </Link>

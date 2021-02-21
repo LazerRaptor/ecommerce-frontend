@@ -2,7 +2,7 @@ import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 
-// FIXME: switching between images forces redundant GET requests that get blocked
+// FIXME: poor performance, switching between images forces redundant GET requests that get blocked
 
 const Item = styled.li`
   margin: 8px 0;

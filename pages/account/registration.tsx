@@ -2,9 +2,10 @@ import { Fragment } from "react";
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import Head from "next/head"
 import styled from "styled-components";
-import Layout from "../../components/common/Layout";
+import { register } from "../../lib/api/auth";
 import Spacer from '../../components/ui/Spacer';
 import Button from "../../components/ui/Button";
+import { MdEmail } from "react-icons/md";
 
 // TODO: add validation with Yup, hide/reveal password
 
@@ -76,10 +77,11 @@ const Registration = () => {
               input: UserInput,
               { setSubmitting }: FormikHelpers<UserInput>
             ) => {
-              setTimeout(() => {
-                alert(JSON.stringify(input, null, 2))
+              const { password2, ...credentials } = input
+              register(credentials).then(res => {
+                alert(res.data)
                 setSubmitting(false);
-              }, 500);
+              })
             }
           }
           >

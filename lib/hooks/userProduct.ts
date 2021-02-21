@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { fetcher } from "../utils/fetcher";
-import { URLPatterns } from "../api/categories";
-import { ICategory } from "../utils/interfaces"; 
+import { URLPatterns } from "../api/product";
+import { IProduct } from "../utils/interfaces"; 
 
 /** 
  * [...array] is used to silence TS complaint 
@@ -10,10 +10,10 @@ import { ICategory } from "../utils/interfaces";
 const keys = [...Object.keys(URLPatterns)] as const
 type Key = typeof keys[number]
 
-const useCategory = (
+const useProduct = (
   key: Key, 
   param?: string,
-  initialData?: ICategory 
+  initialData?: IProduct 
 ) => {
   let url = URLPatterns[key](param);
   const { data, error } = useSWR(url, fetcher, { initialData });
@@ -24,4 +24,4 @@ const useCategory = (
   };
 };
 
-export { useCategory };
+export { useProduct };

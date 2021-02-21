@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import Head from "next/head"
 import styled from "styled-components";
+import { login, logout } from "../../lib/api/auth";
 import Spacer from '../../components/ui/Spacer';
 import Button from "../../components/ui/Button";
 
@@ -72,10 +73,11 @@ const Login = () => {
               input: UserInput,
               { setSubmitting }: FormikHelpers<UserInput>
             ) => {
-              setTimeout(() => {
-                alert(JSON.stringify(input, null, 2))
+              login(input).then(res => {
+                // TODO: router.push('/') or something
+                alert(res.data.auth_token);
                 setSubmitting(false);
-              }, 500);
+              });
             }
           }
           >

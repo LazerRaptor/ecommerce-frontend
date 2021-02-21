@@ -7,7 +7,6 @@ import Navbar from "../../ui/Navbar";
 import Spacer from "../../ui/Spacer";
 
 
-// FIXME: The rules for layout elements are potentially harmful (I think), beware!
 const Wrapper = styled.div`
   min-height: 100vh;
   width: 100%;
