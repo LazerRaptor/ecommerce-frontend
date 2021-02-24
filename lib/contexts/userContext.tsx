@@ -11,14 +11,11 @@ interface userContextInterface {
 }
 
 const UserContext = createContext<userContextInterface>(null);
-UserContext.displayName = "userContext";
-
-const cartID = window.localStorage.getItem('cart');
-const userID = window.localStorage.getItem('user');
+UserContext.displayName = "UserContext";
 
 const UserContextProvider = (props) => {
-  const [user, setUser] = useState(userID);
-  const [cart, setCart] = useState(cartID);
+  const [user, setUser] = useState(null);
+  const [cart, setCart] = useState(null);
   return (
     <UserContext.Provider value={{ user, setUser, cart, setCart }}>
       {props.children}

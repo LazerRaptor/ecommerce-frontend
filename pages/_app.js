@@ -4,11 +4,12 @@ import { UserContextProvider } from "../lib/contexts/userContext";
 
 function MyApp({ Component, pageProps }) {
   return (
-        <div>
-
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </div>
+    <UserContextProvider>
+      <LayoutContextProvider>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </LayoutContextProvider>
+    </UserContextProvider>
   );
 }
 
