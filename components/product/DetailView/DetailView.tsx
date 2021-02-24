@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Gallery from "../../common/Gallery";
-import Description from "./Description";
+import ProductItem from "./ProductItem";
 
 
 const Container = styled.div`
@@ -12,7 +12,7 @@ const DetailView = ({ product }) => {
   return (
     <Container>
       <Gallery images={product.images} />
-      <Description product={product} />
+      <ProductItem product={product} />
     </Container>
   );
 };

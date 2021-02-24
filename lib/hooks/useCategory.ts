@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { fetcher } from "../utils/fetcher";
-import { URLPatterns } from "../api/categories";
+import { URLPatterns } from "../api/category";
 import { ICategory } from "../utils/interfaces"; 
 
 /** 

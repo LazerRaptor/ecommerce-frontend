@@ -8,6 +8,7 @@ type Props = {
   bold?: boolean,
   type?: string,
   radius?: string,
+  onClick?: (e?: React.SyntheticEvent) => void
 }
 
 const Btn = styled.button`
@@ -28,7 +29,8 @@ const Button = ({
   color = "#fff", 
   bold = true,
   type = "",
-  radius = "4px"
+  radius = "4px",
+  ...rest 
 } : Props ) => (
   <Btn
     size={size}
@@ -37,6 +39,7 @@ const Button = ({
     bold={bold}
     type={type}
     radius={radius}
+    {...rest}
   >
     {title}
   </Btn>

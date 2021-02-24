@@ -1,18 +1,18 @@
 import { createContext, useState } from "react";
 
-const defaultValue = {
-  sidebar: false,
-  setSidebar: (bool: boolean) => {},
-  navbar: true,
-  setNavbar: (bool: boolean) => {},
-};
+interface layoutContextInterface {
+  sidebar: boolean,
+  setSidebar: React.Dispatch<React.SetStateAction<boolean>>,
+  navbar: boolean,
+  setNavbar: React.Dispatch<React.SetStateAction<boolean>>,
+}
 
-const LayoutContext = createContext(defaultValue);
+const LayoutContext = createContext<layoutContextInterface>(null);
 LayoutContext.displayName = "LayoutContext";
 
 const LayoutContextProvider = (props) => {
-  const [sidebar, setSidebar] = useState(defaultValue.sidebar);
-  const [navbar, setNavbar] = useState(defaultValue.navbar);
+  const [sidebar, setSidebar] = useState(false);
+  const [navbar, setNavbar] = useState(true);
   return (
     <LayoutContext.Provider value={{ sidebar, setSidebar, navbar, setNavbar }}>
       {props.children}

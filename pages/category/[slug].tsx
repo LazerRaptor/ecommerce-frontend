@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { fetcher } from "../../lib/utils/fetcher";
-import { URLPatterns } from "../../lib/api/categories";
+import { URLPatterns } from "../../lib/api/category";
 import { useCategory } from "../../lib/hooks/useCategory";
 import Layout from "../../components/common/Layout";
 import ListView from "../../components/product/ListView";

@@ -22,3 +22,10 @@ export interface IProduct {
   images: Image[];
   extra: any;
 }
+
+export interface ICart {
+  id: string,
+  owner: number,
+  products: number[],
+  status: 'open' | 'submitted'
+}
