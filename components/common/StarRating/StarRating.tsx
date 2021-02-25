@@ -2,7 +2,6 @@ import { MdStarBorder, MdStar, MdStarHalf } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 
-
 const Votes = styled.span`
   font-size: 0.725em;
   margin-left: 0.5em;
@@ -13,7 +12,7 @@ const Rating = styled.div`
   display: inline-flex;
   align-items: center;
   margin: 0.5em 0;
-  font-size: ${props => props.size}px;
+  font-size: ${(props) => props.size}px;
 `;
 
 type IProps = {

@@ -1,5 +1,5 @@
 export interface ICategory {
-  id: number; 
+  id: number;
   title: string;
   slug: string;
   parent: number | null;
@@ -24,8 +24,8 @@ export interface IProduct {
 }
 
 export interface ICart {
-  id: string,
-  owner: number,
-  products: number[],
-  status: 'open' | 'submitted'
+  id: string;
+  owner: number;
+  products: number[];
+  status: "open" | "submitted";
 }

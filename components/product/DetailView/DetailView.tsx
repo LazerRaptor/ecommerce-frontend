@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Gallery from "../../common/Gallery";
 import ProductItem from "./ProductItem";
 
-
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;

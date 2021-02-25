@@ -2,14 +2,13 @@ import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 
-
 const Container = styled.div`
   position: relative;
 `;
 
 const Figure = styled.figure``;
 const Zoom = styled.figure`
-  display: ${props => props.active ? "block" : "none"};
+  display: ${(props) => (props.active ? "block" : "none")};
   position: absolute;
   top: 0;
   left: 0;

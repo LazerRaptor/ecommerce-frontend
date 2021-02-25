@@ -10,16 +10,22 @@ const Item = styled.li`
     ${(props) => (props.active ? "hsl(60, 0%, 64%)" : "transparent")};
 `;
 
-const ImageList = ({ images, select, selected, width = "76px", height = "76px" }) => {
+const ImageList = ({
+  images,
+  select,
+  selected,
+  width = "76px",
+  height = "76px",
+}) => {
   const handleOnClick = (id) => {
-    let [img] = images.filter(i => i.id == id)
-    select(img)
-  }
+    let [img] = images.filter((i) => i.id == id);
+    select(img);
+  };
 
   return images.length > 1 ? (
     <ul>
       {images.map((image) => (
-        <Item 
+        <Item
           key={uuidv4()}
           onClick={() => handleOnClick(image.id)}
           active={selected.id == image.id}
@@ -30,12 +36,12 @@ const ImageList = ({ images, select, selected, width = "76px", height = "76px" }
             width={width}
             height={height}
             objectFit="contain"
-            loading='eager'
+            loading="eager"
           />
         </Item>
       ))}
     </ul>
   ) : null;
-}
+};
 
 export default ImageList;

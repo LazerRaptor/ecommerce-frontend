@@ -1,5 +1,6 @@
 module.exports = {
   images: {
-    domains: ["sleepy-ridge-bucket.s3.amazonaws.com", "localhost:3000"],
+    domains: ["sleepy-ridge-bucket.s3.amazonaws.com", ],
+    pageExtensions: ['jsx', 'js', 'ts', 'tsx'],
   },
 };

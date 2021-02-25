@@ -6,8 +6,8 @@ import Sidebar from "../../ui/Sidebar";
 import Navbar from "../../ui/Navbar";
 import Spacer from "../../ui/Spacer";
 
-
 const Wrapper = styled.div`
+  position: relative;
   min-height: 100vh;
   width: 100%;
   display: flex;

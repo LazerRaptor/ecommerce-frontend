@@ -2,8 +2,7 @@ import Layout from "../../components/common/Layout";
 import DetailView from "../../components/product/DetailView";
 import { URLPatterns } from "../../lib/api/product";
 import { fetcher } from "../../lib/utils/fetcher";
-import { useProduct } from "../../lib/hooks/userProduct";
-
+import { useProduct } from "../../lib/hooks/";
 
 export async function getStaticPaths() {
   const response = await fetcher(URLPatterns.staticPaths());
@@ -18,18 +17,16 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       product,
-      slug: params.slug
+      slug: params.slug,
     },
   };
 }
 
-const Products = ({ product }) => {
-  const { data } = useProduct("detail", product.slug, product)
+export default function Products({ product }) {
+  const { data } = useProduct(product.slug, product);
   return (
     <Layout title={product.title}>
       <DetailView product={data} />;
     </Layout>
-  )
+  );
 }
-
-export default Products;

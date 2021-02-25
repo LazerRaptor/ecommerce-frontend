@@ -53,7 +53,7 @@ const Panel = styled.div`
 const ListItem = ({ item }) => {
   let [image] = item.images.filter((img) => img.is_showcase);
   // if no image is marked as showcase, pick the first one
-  image = image || item.images[0]
+  image = image || item.images[0];
   const [hover, setHover] = useState(false);
   return (
     <Card

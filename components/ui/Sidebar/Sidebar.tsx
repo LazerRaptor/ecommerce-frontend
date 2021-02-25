@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { LayoutContext } from "../../../lib/contexts/layoutContext";
 import Skeleton from "../Skeleton";
 import { MdClose } from "react-icons/md";
-import { useCategory } from "../../../lib/hooks/useCategory";
+import { useCategory } from "../../../lib/hooks/";
 
 const Aside = styled.aside`
   position: fixed;
@@ -50,7 +50,7 @@ const Title = styled.h1`
 `;
 
 const CategoryList = ({ categories, nested = false }) => {
-  return !!categories ? (
+  return categories !== undefined ? (
     <List>
       {categories.map((category) => (
         <ListItem nested={nested} key={category.id}>

@@ -4,16 +4,15 @@ import ImageList from "./ImageList";
 import ImageDetail from "./ImageDetail";
 import Spacer from "../../ui/Spacer";
 
-
 const Container = styled.div`
   display: flex;
 `;
 
 const Gallery = ({ images }) => {
-  const [showcase] = images.filter(img => img.is_showcase)
-  const initialValue = showcase || images[0]
+  const [showcase] = images.filter((img) => img.is_showcase);
+  const initialValue = showcase || images[0];
 
-  const [selectedImage, setSelected] = useState(initialValue)
+  const [selectedImage, setSelected] = useState(initialValue);
   return (
     <Container>
       <ImageList

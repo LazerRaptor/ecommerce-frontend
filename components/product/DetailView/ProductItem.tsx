@@ -1,11 +1,7 @@
-import { useContext, useState } from "react";
 import styled from "styled-components";
-import { addProduct } from "../../../lib/api/cart";
-import { UserContext } from "../../../lib/contexts/userContext";
 import StarRating from "../../common/StarRating";
 import Button from "../../ui/Button";
 import Spacer from "../../ui/Spacer";
-
 
 const Title = styled.h1`
   font-size: 2.2em;
@@ -14,23 +10,14 @@ const Title = styled.h1`
 
 const Paragraph = styled.p`
   font-size: 1rem;
-`
+`;
 
 const Price = styled.div`
   font-size: 1.8em;
   font-weight: 600;
 `;
 
-
 const ProductItem = ({ product }) => {
-  /** Add button */ 
-  const handleOnClick = () => {
-    const { cart } = useContext(UserContext)
-    addProduct({
-      product: product.id,
-      cart: cart
-    })
-  }
   return (
     <div>
       <Title>{product.title}</Title>
@@ -41,13 +28,9 @@ const ProductItem = ({ product }) => {
       <Spacer y={2} />
       <Price>${product.price}</Price>
       <Spacer y={2} />
-      <Button 
-        title="Add to Cart" 
-        size="18" 
-        onClick={() => handleOnClick()}
-      />
+      <Button title="Add to Cart" size="18" onClick={() => {}} />
     </div>
   );
-}
+};
 
 export default ProductItem;

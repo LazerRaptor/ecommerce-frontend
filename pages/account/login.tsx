@@ -1,11 +1,12 @@
-import { Fragment } from "react";
-import { Formik, Field, Form, FormikHelpers } from 'formik';
-import Head from "next/head"
+import { Fragment, useState } from "react";
+import { useRouter } from "next/router";
+import { Formik, Field, Form, FormikHelpers } from "formik";
+import { v4 as uuidv4 } from "uuid";
+import Head from "next/head";
 import styled from "styled-components";
-import { login, logout } from "../../lib/api/auth";
-import Spacer from '../../components/ui/Spacer';
+import { login } from "../../lib/api/auth";
+import Spacer from "../../components/ui/Spacer";
 import Button from "../../components/ui/Button";
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  font-family: 'Domine', serif;
+  font-family: "Domine", serif;
   font-weight: 400;
   font-size: 1.8em;
 `;
@@ -35,71 +36,83 @@ const StyledField = styled(Field)`
   line-height: 2rem;
   font-size: 1.1em;
   font-weight: 400;
-  padding: .65em;
+  padding: 0.65em;
   color: hsl(0, 0%, 33%);
-`; 
+`;
 
 const Label = styled.label`
   font-size: 1em;
   font-weight: 400;
-  letter-spacing: .25px;
+  letter-spacing: 0.25px;
   color: hsl(0, 0%, 32%);
-  margin-bottom: .4rem;
+  margin-bottom: 0.4rem;
+`;
+
+const StyledError = styled.div`
+  font-size: 0.9em;
+  color: hsl(0, 53%, 48%);
+  text-align: center;
+  padding-top: 1em;
 `;
 
 type UserInput = {
-  email: string, 
-  password: string
-}
+  email: string;
+  password: string;
+};
 
-const Login = () => {
+function Login() {
+  const router = useRouter();
+  const [errors, setErrors] = useState<Array<string>>([]);
   return (
     <Fragment>
       <Head>
         <title>Login Page</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <Wrapper>
         <Container>
           <Header>Sign in to your account</Header>
+          <StyledError>
+            {errors.map((err) => (
+              <p key={uuidv4()}>{err}</p>
+            ))}
+          </StyledError>
           <Spacer y={2} />
           <Formik
             initialValues={{
-              email: '',
-              password: ''
+              email: "",
+              password: "",
             }}
-            onSubmit={(
+            onSubmit={async (
               input: UserInput,
               { setSubmitting }: FormikHelpers<UserInput>
             ) => {
-              login(input).then(res => {
-                // TODO: router.push('/') or something
-                alert(res.data.auth_token);
-                setSubmitting(false);
-              });
-            }
-          }
+              login(input)
+                .then(() => {
+                  setSubmitting(false);
+                  router.push("/");
+                })
+                .catch((e) => setErrors(e.response.data.non_field_errors));
+            }}
           >
             <StyledForm>
               <Label htmlFor="email">Email</Label>
               <StyledField id="email" name="email" type="email" />
-              <Spacer y={.6} />
+              <Spacer y={0.6} />
               <Label htmlFor="password">Password</Label>
-              <StyledField id="password" name="password" type="password"/>
+              <StyledField id="password" name="password" type="password" />
               <Spacer y={1} />
-              <Button
-                title="Sign In"
-                size={19}
-                type="submit"
-                radius="32px"
-              /> 
+              <Button title="Sign In" size={19} type="submit" radius="32px" />
             </StyledForm>
           </Formik>
         </Container>
       </Wrapper>
     </Fragment>
-  )
+  );
 }
 
 export default Login;

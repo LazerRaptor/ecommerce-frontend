@@ -6,9 +6,6 @@ import Layout from "../../components/common/Layout";
 import ListView from "../../components/product/ListView";
 import { ICategory } from "../../lib/utils/interfaces";
 
-// FIXME: Refactor to use SWR like in the example: https://swr.vercel.app/docs/with-nextjs
-// with useCategory we should be able to get category.title to pass to Head component
-
 export async function getStaticPaths() {
   const categories = await fetcher(URLPatterns.list());
   const paths = categories.map((category: ICategory) => ({
@@ -22,18 +19,16 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       content,
-      slug: params.slug
+      slug: params.slug,
     },
   };
 }
 
-const CategoryPage = ({ content, slug }) => {
-  const { data } = useCategory("content", slug, content)
+export default function CategoryPage({ content, slug }) {
+  const { data } = useCategory("content", slug, content);
   return (
     <Layout>
       <ListView items={data} />
     </Layout>
-  ) 
-};
-
-export default CategoryPage;
+  );
+}
