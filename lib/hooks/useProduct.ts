@@ -1,10 +1,10 @@
 import useSWR from "swr";
 import { fetcher } from "../utils/fetcher";
-import { URLPatterns } from "../api/category";
+import { BASE_URL } from "../constants";
 import { IProduct } from "../utils/interfaces";
 
-function useProduct(param: string, initialData?: IProduct) {
-  let url = URLPatterns["detail"](param);
+function useProduct(slug: string, initialData?: IProduct) {
+  let url = `${BASE_URL}/api/products/${slug}.json`;
   const { data, error } = useSWR(url, fetcher, { initialData });
   return {
     data,

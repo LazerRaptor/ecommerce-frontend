@@ -1,11 +1,11 @@
 import Layout from "../../components/common/Layout";
 import DetailView from "../../components/product/DetailView";
-import { URLPatterns } from "../../lib/api/product";
 import { fetcher } from "../../lib/utils/fetcher";
+import { BASE_URL } from "../../lib/constants";
 import { useProduct } from "../../lib/hooks/";
 
 export async function getStaticPaths() {
-  const response = await fetcher(URLPatterns.staticPaths());
+  const response = await fetcher(`${BASE_URL}/api/paths/products.json`);
   const paths = response.map((slug) => ({
     params: { slug },
   }));
@@ -13,7 +13,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const product = await fetcher(URLPatterns.detail(params.slug));
+  
+  const product = await fetcher(`${BASE_URL}/api/products/${params.slug}.json`);
   return {
     props: {
       product,

@@ -5,6 +5,7 @@ import { LayoutContext } from "../../../lib/contexts/layoutContext";
 import Skeleton from "../Skeleton";
 import { MdClose } from "react-icons/md";
 import { useCategory } from "../../../lib/hooks/";
+import { BASE_URL } from "../../../lib/constants";
 
 const Aside = styled.aside`
   position: fixed;
@@ -49,7 +50,7 @@ const Title = styled.h1`
   margin: 1.5em 0;
 `;
 
-const CategoryList = ({ categories, nested = false }) => {
+function CategoryList({ categories, nested = false }) {
   return categories !== undefined ? (
     <List>
       {categories.map((category) => (
@@ -71,21 +72,17 @@ const CategoryList = ({ categories, nested = false }) => {
   ) : null;
 };
 
-const Sidebar = () => {
-  let { data, isLoading } = useCategory("tree");
+function Sidebar() {
+  const { data, isLoading } = useCategory(`${BASE_URL}/api/category-tree.json`);
   const { sidebar, setSidebar } = useContext(LayoutContext);
-  let categoryView = isLoading ? (
-    <Skeleton />
-  ) : (
-    <CategoryList categories={data} />
-  );
   return (
     <Aside show={sidebar}>
       <CloseIcon>
         <MdClose onClick={() => setSidebar(false)} size="1.5em" />
       </CloseIcon>
       <Title>Browse Categories</Title>
-      {categoryView}
+      {isLoading ? <Skeleton /> 
+                 : <CategoryList categories={data} />}
     </Aside>
   );
 };

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import StarRating from "../../common/StarRating";
 import Button from "../../ui/Button";
 import Spacer from "../../ui/Spacer";
+import { addProduct } from "../../../lib/api/cart";
 
 const Title = styled.h1`
   font-size: 2.2em;
@@ -28,7 +29,7 @@ const ProductItem = ({ product }) => {
       <Spacer y={2} />
       <Price>${product.price}</Price>
       <Spacer y={2} />
-      <Button title="Add to Cart" size="18" onClick={() => {}} />
+      <Button title="Add to Cart" size="18" onClick={() => addProduct(product.id)} />
     </div>
   );
 };
