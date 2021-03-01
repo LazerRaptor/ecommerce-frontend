@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Spacer from "../../ui/Spacer";
 import Favorite from "../../common/Favorite";
 import { useState } from "react";
+import { CURRENCY } from "../../../lib/constants";
 
 const Card = styled.div`
   text-align: center;
@@ -97,7 +98,7 @@ const ListItem = ({ item }) => {
           </Link>
         </Title>
         <Spacer y={0.5} />
-        <Price>${item.price}</Price>
+        <Price>{CURRENCY.sign}{item.price}</Price>
       </Footer>
     </Card>
   );

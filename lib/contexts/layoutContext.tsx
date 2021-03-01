@@ -10,7 +10,7 @@ interface layoutContextInterface {
 const LayoutContext = createContext<layoutContextInterface>(null);
 LayoutContext.displayName = "LayoutContext";
 
-const LayoutContextProvider = (props) => {
+function LayoutContextProvider(props) {
   const [sidebar, setSidebar] = useState(false);
   const [navbar, setNavbar] = useState(true);
   return (

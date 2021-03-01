@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { CURRENCY } from "../../../lib/constants";
+import { CartContext } from "../../../lib/contexts";
 import StarRating from "../../common/StarRating";
 import Button from "../../ui/Button";
 import Spacer from "../../ui/Spacer";
-import { addProduct } from "../../../lib/api/cart";
 
 const Title = styled.h1`
   font-size: 2.2em;
@@ -19,6 +21,7 @@ const Price = styled.div`
 `;
 
 const ProductItem = ({ product }) => {
+  const { addToCart, removeFromCart, inCart } = useContext(CartContext);
   return (
     <div>
       <Title>{product.title}</Title>
@@ -27,9 +30,10 @@ const ProductItem = ({ product }) => {
       <Spacer y={2} />
       <Paragraph>{product.description}</Paragraph>
       <Spacer y={2} />
-      <Price>${product.price}</Price>
+      <Price>{CURRENCY.sign}{product.price}</Price>
       <Spacer y={2} />
-      <Button title="Add to Cart" size="18" onClick={() => addProduct(product.id)} />
+      {inCart(product) ? <Button title="Remove from Cart" size="18" onClick={() => removeFromCart(product)} /> 
+                       : <Button title="Add to Cart" size="18" onClick={() => addToCart(product)} />}
     </div>
   );
 };

@@ -1,0 +1,48 @@
+import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { IProduct } from "../../lib/utils/interfaces";
+import { CURRENCY } from "../../lib/constants";
+import Button from "../ui/Button";
+import Spacer from "../ui/Spacer";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 2rem;
+`;
+
+const Item = styled.div`
+  font-size: 1.1em;
+  font-weight: 500;
+  margin: .5rem 0;
+  width: 100%;
+  color: hsl(0, 0%, 41%);
+  display: flex;
+  justify-content: space-between;
+  span.bolder {
+    font-size: 1.2em;
+    color: black;
+  }
+`;
+
+const Summary = function({ items } : {items: Array<IProduct>}) {
+  let [amount, setAmount] = useState(0);
+  useEffect(() => {
+    let val = 0;
+    if (items.length > 0) val = items.reduce((acc, item) => acc + Number(item.price), 0);
+    setAmount(val);
+  })
+  return (
+    <Wrapper>
+      <Item><span className="bolder">Est. Total: </span><span className="bolder">{CURRENCY.sign}{amount.toFixed(2)}</span></Item>
+      <Item><span>Subtotal: </span>{CURRENCY.sign}{amount.toFixed(2)}</Item>
+      <Item><span>Shipping: </span> FREE</Item>
+      <Spacer y={.6} />
+      <Button title="Proceed to Checkout" size={19} isFullWidth={true} />
+    </Wrapper>
+  )
+}
+
+export default Summary;

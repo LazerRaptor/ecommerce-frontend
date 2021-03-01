@@ -8,6 +8,7 @@ type Props = {
   bold?: boolean;
   type?: string;
   radius?: string;
+  isFullWidth?: boolean;
   onClick?: (e?: React.SyntheticEvent) => void;
 };
 
@@ -16,6 +17,7 @@ const Btn = styled.button`
   color: ${(props) => props.color};
   font-weight: ${(props) => (props.bold ? 600 : 400)};
   font-size: ${(props) => props.size}px;
+  width: ${(props) => props.isFullWidth ? "100%": "initial"};
   border-radius: ${(props) => props.radius};
   border: 0;
   outline: 0;
@@ -26,10 +28,11 @@ const Btn = styled.button`
 function Button({
   title,
   size,
+  bold = true,
+  isFullWidth = false,
   background = "#000",
   color = "#fff",
-  bold = true,
-  type = "",
+  type = "button",
   radius = "4px",
   ...rest
 }: Props) {
@@ -41,6 +44,7 @@ function Button({
       bold={bold}
       type={type}
       radius={radius}
+      isFullWidth={isFullWidth}
       {...rest}
     >
       {title}
