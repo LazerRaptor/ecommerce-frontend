@@ -28,9 +28,11 @@ const ProductItem = ({ product }) => {
       <Spacer y={2} />
       <Paragraph>{product.description}</Paragraph>
       <Spacer y={2} />
-      <Price>{CURRENCY.sign}{product.price}</Price>
+      <Price>
+        {CURRENCY.sign}
+        {product.price}
+      </Price>
       <Spacer y={2} />
-
     </div>
   );
 };

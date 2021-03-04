@@ -17,7 +17,7 @@ const Btn = styled.button`
   color: ${(props) => props.color};
   font-weight: ${(props) => (props.bold ? 600 : 400)};
   font-size: ${(props) => props.size}px;
-  width: ${(props) => props.isFullWidth ? "100%": "initial"};
+  width: ${(props) => (props.isFullWidth ? "100%" : "initial")};
   border-radius: ${(props) => props.radius};
   border: 0;
   outline: 0;

@@ -50,10 +50,10 @@ const StyledError = styled.div`
 
 export {
   Wrapper,
-  Container, 
+  Container,
   StyledForm,
   StyledField,
   Header,
   Label,
-  StyledError
-}
+  StyledError,
+};

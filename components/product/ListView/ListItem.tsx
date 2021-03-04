@@ -98,7 +98,10 @@ const ListItem = ({ item }) => {
           </Link>
         </Title>
         <Spacer y={0.5} />
-        <Price>{CURRENCY.sign}{item.price}</Price>
+        <Price>
+          {CURRENCY.sign}
+          {item.price}
+        </Price>
       </Footer>
     </Card>
   );

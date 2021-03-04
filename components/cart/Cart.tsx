@@ -27,29 +27,30 @@ const Header = styled.h1`
   font-weight: 400;
 `;
 
-const Cart = function() {
+const Cart = function () {
   const { cart, isLoading, isError } = useCart();
-  const CartView = ({ cart }) => cart.lines.length > 0 ? (
-    <Wrapper>
-      <List>
-        <ListItem>
-          <Header>Your cart: {cart.lines.length} items</Header> 
-        </ListItem>
-        <Spacer y={2} />
-        {cart.lines.map(item => (
-          <ListItem key={item.id}>
-            <CartItem item={item} />
-            <Spacer y={2} />
+  const CartView = ({ cart }) =>
+    cart.lines.length > 0 ? (
+      <Wrapper>
+        <List>
+          <ListItem>
+            <Header>Your cart: {cart.lines.length} items</Header>
           </ListItem>
-        ))}
-      </List>
-      <Summary items={cart.lines} />
-    </Wrapper>
-  ) : <div>your cart is empty</div>
+          <Spacer y={2} />
+          {cart.lines.map((item) => (
+            <ListItem key={item.id}>
+              <CartItem item={item} />
+              <Spacer y={2} />
+            </ListItem>
+          ))}
+        </List>
+        <Summary items={cart.lines} />
+      </Wrapper>
+    ) : (
+      <div>your cart is empty</div>
+    );
   // FIXME if else blocks should be more visible
-  return isLoading ? <div>is loading </div>
-                   : <CartView cart={cart} />
-}
+  return isLoading ? <div>is loading </div> : <CartView cart={cart} />;
+};
 
 export default Cart;
-

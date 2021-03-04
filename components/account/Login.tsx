@@ -6,14 +6,14 @@ import Head from "next/head";
 import { login } from "../../lib/api/auth";
 import Spacer from "../../components/ui/Spacer";
 import Button from "../../components/ui/Button";
-import { 
+import {
   Wrapper,
-  Container, 
+  Container,
   StyledForm, // Formik Form component with applied styles
   StyledField, // Formik Field component with applied styles
   Header,
   Label,
-  StyledError 
+  StyledError,
 } from "./styles";
 
 type UserInput = {
@@ -75,4 +75,3 @@ export function Login() {
     </Fragment>
   );
 }
-

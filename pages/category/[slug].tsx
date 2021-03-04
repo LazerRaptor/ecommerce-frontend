@@ -14,7 +14,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const content = await fetcher(`${BASE_URL}/api/categories/${params.slug}/content.json`);
+  const content = await fetcher(
+    `${BASE_URL}/api/categories/${params.slug}/content.json`
+  );
   return {
     props: {
       content,
@@ -24,7 +26,10 @@ export async function getStaticProps({ params }) {
 }
 
 export default function CategoryPage({ content: initialData, slug }) {
-  const { data } = useCategory(`${BASE_URL}/api/categories/${slug}/content`, initialData);
+  const { data } = useCategory(
+    `${BASE_URL}/api/categories/${slug}/content`,
+    initialData
+  );
   return (
     <Layout>
       <ListView items={data} />

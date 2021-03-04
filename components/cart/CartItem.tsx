@@ -9,7 +9,6 @@ import { IoAddSharp, IoRemoveSharp } from "react-icons/io5";
 const Container = styled.div`
   display: grid;
   grid-template-columns: 100px 3fr 1fr 1fr 10ch;
-
 `;
 
 const FlexRowCenter = styled.div`
@@ -32,9 +31,9 @@ const Input = styled.input`
   text-align: center;
   width: 1rem;
   outline: 0;
-`
-const Button = styled.button.attrs(props => ({
-  disabled: props.disabled
+`;
+const Button = styled.button.attrs((props) => ({
+  disabled: props.disabled,
 }))`
   border: 0;
   outline: 0;
@@ -50,37 +49,37 @@ const RemoveBtn = styled.button`
   border: 0;
   outline: 0;
   text-decoration: underline;
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 300;
   cursor: pointer;
-`
+`;
 
-const CartItem = function({ item } : { item: IProduct }) {
-  const [showcase] = item.images.filter(img => img.is_showcase);
+const CartItem = function ({ item }: { item: IProduct }) {
+  const [showcase] = item.images.filter((img) => img.is_showcase);
   const image = showcase || item.images[0];
   const [qty, setQty] = useState<number>(1);
   /** Event handlers */
-  const handleChangeQty = function(event: React.FormEvent<HTMLInputElement>) {
-    event.preventDefault()
+  const handleChangeQty = function (event: React.FormEvent<HTMLInputElement>) {
+    event.preventDefault();
     const value = event.currentTarget.value;
-    let num: number
+    let num: number;
     num = Number(value);
     if (isNaN(num)) num = qty;
     setQty(num);
-  }
-  const handleOnBlur = function(event: React.FocusEvent<HTMLInputElement>) {
+  };
+  const handleOnBlur = function (event: React.FocusEvent<HTMLInputElement>) {
     const value = event.currentTarget.value;
     if (Number(value) <= 1) setQty(1);
-  } 
+  };
   return (
     <Container>
       <FlexRowCenter>
         <Link href={`products/${encodeURIComponent(item.slug)}`}>
           <a>
-            <Image 
-              src={image.src} 
-              alt={image.alt} 
-              width="72" 
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width="72"
               height="72"
               objectFit="contain"
             />
@@ -96,10 +95,12 @@ const CartItem = function({ item } : { item: IProduct }) {
         <Button onClick={() => setQty(qty - 1)} disabled={qty <= 1}>
           <IoRemoveSharp />
         </Button>
-        <Input 
+        <Input
           type="text"
           value={qty}
-          onChange={(e: React.FormEvent<HTMLInputElement>) => handleChangeQty(e)}
+          onChange={(e: React.FormEvent<HTMLInputElement>) =>
+            handleChangeQty(e)
+          }
           onBlur={(e: React.FocusEvent<HTMLInputElement>) => handleOnBlur(e)}
         />
         <Button onClick={() => setQty(qty + 1)}>
@@ -107,13 +108,16 @@ const CartItem = function({ item } : { item: IProduct }) {
         </Button>
       </FlexRowCenter>
       <FlexRowCenter>
-        <Price>{CURRENCY.sign}{item.price}</Price>
+        <Price>
+          {CURRENCY.sign}
+          {item.price}
+        </Price>
       </FlexRowCenter>
       <FlexRowCenter>
-        <RemoveBtn onClick={() => console.log('remove')}>Remove</RemoveBtn>
+        <RemoveBtn onClick={() => console.log("remove")}>Remove</RemoveBtn>
       </FlexRowCenter>
     </Container>
-  )
-}
+  );
+};
 
 export default CartItem;

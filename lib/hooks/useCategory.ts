@@ -9,6 +9,6 @@ function useCategory(url, initialData?: ICategory) {
     isLoading: !error && !data,
     isError: error,
   };
-};
+}
 
 export { useCategory };

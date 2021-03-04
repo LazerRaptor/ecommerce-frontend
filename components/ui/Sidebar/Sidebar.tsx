@@ -71,7 +71,7 @@ function CategoryList({ categories, nested = false }) {
       ))}
     </List>
   ) : null;
-};
+}
 
 function Sidebar() {
   const { data, isLoading } = useCategory(`${BASE_URL}/api/category-tree.json`);
@@ -82,10 +82,9 @@ function Sidebar() {
         <MdClose onClick={() => setSidebar(false)} size="1.5em" />
       </CloseIcon>
       <Title>Browse Categories</Title>
-      {isLoading ? <Skeleton /> 
-                 : <CategoryList categories={data} />}
+      {isLoading ? <Skeleton /> : <CategoryList categories={data} />}
     </Aside>
   );
-};
+}
 
 export default Sidebar;

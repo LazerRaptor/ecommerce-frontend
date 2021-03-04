@@ -6,7 +6,7 @@ const login = async (data) => {
   const url = `${BASE_URL}/api/auth/token/login/`;
   const response = await axios.post(url, data);
   if (response.status === 200) {
-    Cookies.set('auth_token', response.data.auth_token);
+    Cookies.set("auth_token", response.data.auth_token);
   }
   return response;
 };
@@ -15,7 +15,7 @@ const logout = async () => {
   const url = `${BASE_URL}/api/auth/token/logout/`;
   const response = await axios.post(url);
   if (response.status === 204) {
-    Cookies.remove('auth_token');
+    Cookies.remove("auth_token");
   }
   return response;
 };

@@ -6,14 +6,14 @@ import Head from "next/head";
 import { register } from "../../lib/api/auth";
 import Spacer from "../../components/ui/Spacer";
 import Button from "../../components/ui/Button";
-import { 
+import {
   Wrapper,
-  Container, 
+  Container,
   StyledForm, // Formik Form component with applied styles
   StyledField, // Formik Field component with applied styles
   Header,
   Label,
-  StyledError 
+  StyledError,
 } from "./styles";
 // TODO: add validation with Yup, hide/reveal password
 
@@ -59,7 +59,7 @@ export function Registration() {
               register(credentials)
                 .then(() => {
                   setSubmitting(false);
-                  router.push('account/login')
+                  router.push("account/login");
                 })
                 .catch((e) => setErrors(e.response.data.non_field_errors));
             }}
@@ -82,4 +82,3 @@ export function Registration() {
     </Fragment>
   );
 }
-

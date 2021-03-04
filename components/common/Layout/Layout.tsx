@@ -22,7 +22,7 @@ const Main = styled.div`
   @media (max-width: 736px) {
     width: 98%;
     margin: 0 auto;
-  };
+  } ;
 `;
 
 const Screenshade = styled.div`

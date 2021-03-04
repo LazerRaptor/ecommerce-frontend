@@ -18,6 +18,6 @@ function LayoutContextProvider(props) {
       {props.children}
     </LayoutContext.Provider>
   );
-};
+}
 
 export { LayoutContextProvider, LayoutContext };

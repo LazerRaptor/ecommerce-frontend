@@ -13,7 +13,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  
   const product = await fetcher(`${BASE_URL}/api/products/${params.slug}.json`);
   return {
     props: {

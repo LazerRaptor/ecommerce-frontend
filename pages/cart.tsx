@@ -3,8 +3,7 @@ import CartComponent from "../components/cart";
 
 export async function getStaticProps() {
   return {
-    props: {
-    },
+    props: {},
   };
 }
 
