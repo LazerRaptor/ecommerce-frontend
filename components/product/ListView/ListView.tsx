@@ -6,6 +6,7 @@ const GridContainer = styled.div`
   grid-gap: 4rem;
   grid-template-columns: repeat(auto-fill, 14rem);
   grid-template-rows: repeat(auto-fill, 20rem);
+  justify-content: center;
   padding: 2rem 0;
 `;
 

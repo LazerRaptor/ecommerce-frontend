@@ -1,24 +1,30 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import { CartContext } from "../../lib/contexts";
 import { IProduct } from "../../lib/utils/interfaces";
 import { CURRENCY } from "../../lib/constants";
 import { IoAddSharp, IoRemoveSharp } from "react-icons/io5";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 100px 4fr 2fr 1fr 1fr;
+  grid-template-columns: 100px 3fr 1fr 1fr 10ch;
+
 `;
 
-const FlexAlignCenter = styled.div`
+const FlexRowCenter = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const Title = styled.h4`
+const Title = styled.a`
   font-size: 1.2em;
   font-weight: 400;
+  color: black;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Input = styled.input`
@@ -52,7 +58,6 @@ const RemoveBtn = styled.button`
 const CartItem = function({ item } : { item: IProduct }) {
   const [showcase] = item.images.filter(img => img.is_showcase);
   const image = showcase || item.images[0];
-  const { removeFromCart } = useContext(CartContext);
   const [qty, setQty] = useState<number>(1);
   /** Event handlers */
   const handleChangeQty = function(event: React.FormEvent<HTMLInputElement>) {
@@ -69,19 +74,25 @@ const CartItem = function({ item } : { item: IProduct }) {
   } 
   return (
     <Container>
-      <FlexAlignCenter>
-        <Image 
-          src={image.src} 
-          alt={image.alt} 
-          width="72" 
-          height="72"
-          objectFit="contain"
-        />
-      </FlexAlignCenter>
-      <FlexAlignCenter>
-        <Title>{item.title}</Title>
-      </FlexAlignCenter>
-      <FlexAlignCenter>
+      <FlexRowCenter>
+        <Link href={`products/${encodeURIComponent(item.slug)}`}>
+          <a>
+            <Image 
+              src={image.src} 
+              alt={image.alt} 
+              width="72" 
+              height="72"
+              objectFit="contain"
+            />
+          </a>
+        </Link>
+      </FlexRowCenter>
+      <FlexRowCenter>
+        <Link href={`products/${encodeURIComponent(item.slug)}`}>
+          <Title>{item.title}</Title>
+        </Link>
+      </FlexRowCenter>
+      <FlexRowCenter>
         <Button onClick={() => setQty(qty - 1)} disabled={qty <= 1}>
           <IoRemoveSharp />
         </Button>
@@ -94,13 +105,13 @@ const CartItem = function({ item } : { item: IProduct }) {
         <Button onClick={() => setQty(qty + 1)}>
           <IoAddSharp onClick={() => setQty(qty + 1)} />
         </Button>
-      </FlexAlignCenter>
-      <FlexAlignCenter>
+      </FlexRowCenter>
+      <FlexRowCenter>
         <Price>{CURRENCY.sign}{item.price}</Price>
-      </FlexAlignCenter>
-      <FlexAlignCenter>
-        <RemoveBtn onClick={() => removeFromCart(item)}>Remove</RemoveBtn>
-      </FlexAlignCenter>
+      </FlexRowCenter>
+      <FlexRowCenter>
+        <RemoveBtn onClick={() => console.log('remove')}>Remove</RemoveBtn>
+      </FlexRowCenter>
     </Container>
   )
 }

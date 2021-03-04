@@ -26,6 +26,6 @@ export interface IProduct {
 export interface ICart {
   id: string;
   owner: number;
-  products: number[];
+  products: IProduct[];
   status: "open" | "submitted";
 }

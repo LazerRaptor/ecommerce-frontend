@@ -1,16 +1,17 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { CartContext } from "../../lib/contexts";
 import Spacer from "../ui/Spacer";
 import CartItem from "./CartItem";
 import Summary from "./Summary";
+import { useCart } from "../../lib/hooks";
+import Cookies from "js-cookie";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 5fr 2fr;
-  @media (max-width: 900px) {
-    display: flex;
-    flex-direction: column;
+  justify-content: center;
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -27,24 +28,27 @@ const Header = styled.h1`
 `;
 
 const Cart = function() {
-  const { cartItems } = useContext(CartContext);
-  return (
+  const { cart, isLoading, isError } = useCart();
+  const CartView = ({ cart }) => cart.lines.length > 0 ? (
     <Wrapper>
       <List>
         <ListItem>
-          <Header>Your cart: {cartItems.length} items</Header> 
+          <Header>Your cart: {cart.lines.length} items</Header> 
         </ListItem>
         <Spacer y={2} />
-        {cartItems.map(item => (
+        {cart.lines.map(item => (
           <ListItem key={item.id}>
             <CartItem item={item} />
             <Spacer y={2} />
           </ListItem>
         ))}
       </List>
-      <Summary items={cartItems} />
+      <Summary items={cart.lines} />
     </Wrapper>
-  )
+  ) : <div>your cart is empty</div>
+  // FIXME if else blocks should be more visible
+  return isLoading ? <div>is loading </div>
+                   : <CartView cart={cart} />
 }
 
 export default Cart;

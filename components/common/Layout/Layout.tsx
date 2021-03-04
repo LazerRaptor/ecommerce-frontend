@@ -15,10 +15,14 @@ const Wrapper = styled.div`
 `;
 
 const Main = styled.div`
-  width: 80%;
+  width: 88%;
   margin: 0 auto;
   min-height: 100%;
   box-sizing: border-box;
+  @media (max-width: 736px) {
+    width: 98%;
+    margin: 0 auto;
+  };
 `;
 
 const Screenshade = styled.div`

@@ -10,11 +10,16 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 350px;
   padding: 0 2rem;
+  @media(max-width: 1200px) {
+    margin-top: 1rem;
+    padding: 0;
+  }
 `;
 
 const Item = styled.div`
-  font-size: 1.1em;
+  font-size: 1rem;
   font-weight: 500;
   margin: .5rem 0;
   width: 100%;
@@ -28,7 +33,7 @@ const Item = styled.div`
 `;
 
 const Summary = function({ items } : {items: Array<IProduct>}) {
-  let [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(0);
   useEffect(() => {
     let val = 0;
     if (items.length > 0) val = items.reduce((acc, item) => acc + Number(item.price), 0);
@@ -40,7 +45,12 @@ const Summary = function({ items } : {items: Array<IProduct>}) {
       <Item><span>Subtotal: </span>{CURRENCY.sign}{amount.toFixed(2)}</Item>
       <Item><span>Shipping: </span> FREE</Item>
       <Spacer y={.6} />
-      <Button title="Proceed to Checkout" size={19} isFullWidth={true} />
+      <Button 
+        isFullWidth
+        title="Proceed to Checkout" 
+        size={19}
+        onClick={() => console.log()}
+      />
     </Wrapper>
   )
 }

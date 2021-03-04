@@ -39,6 +39,7 @@ const ListItem = styled.li`
 const Anchor = styled.a`
   text-decoration: ${(props) => (props.nested ? "none" : "underline")};
   color: ${(props) => (props.nested ? "hsl(0, 0%, 42%)" : "black")};
+  text-transform: capitalize;
   cursor: pointer;
   &:hover {
     color: black;

@@ -1,11 +1,12 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const fetcher = async (url: string) => {
-  if (typeof window !== 'undefined') {
-    const token = window.localStorage.getItem('auth_token');
-    axios.defaults.headers.common["Authorization"] = token; 
+  const token = Cookies.get('auth_token');
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `token ${token}`; 
   }
-  let response = await axios.get(url);
+  const response = await axios.get(url);
   return response.data;
 };
 
