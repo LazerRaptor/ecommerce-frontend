@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import styled from "styled-components";
 import { CURRENCY } from "../../../lib/constants";
+import { useCart } from "../../../lib/hooks";
+import { IProduct } from "../../../lib/utils/interfaces";
 import StarRating from "../../common/StarRating";
-import Button from "../../ui/Button";
 import Spacer from "../../ui/Spacer";
 
 const Title = styled.h1`
@@ -19,7 +19,8 @@ const Price = styled.div`
   font-weight: 600;
 `;
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product }: {product: IProduct}) => {
+  const { AddButton } = useCart()
   return (
     <div>
       <Title>{product.title}</Title>
@@ -33,6 +34,7 @@ const ProductItem = ({ product }) => {
         {product.price}
       </Price>
       <Spacer y={2} />
+      <AddButton productId={product.id} />
     </div>
   );
 };

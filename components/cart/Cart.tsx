@@ -1,10 +1,9 @@
+import { useCart } from "../../lib/hooks";
+import { TItem } from "../../lib/utils/interfaces";
 import styled from "styled-components";
 import Spacer from "../ui/Spacer";
 import CartItem from "./CartItem";
 import Summary from "./Summary";
-import { useCart } from "../../lib/hooks";
-import Cookies from "js-cookie";
-import { useState } from "react";
 
 const Wrapper = styled.div`
   display: grid;
@@ -28,29 +27,30 @@ const Header = styled.h1`
 `;
 
 const Cart = function () {
-  const { cart, isLoading, isError } = useCart();
-  const CartView = ({ cart }) =>
-    cart.lines.length > 0 ? (
+  const { cartItems, isLoading, error } = useCart();
+  const CartView = ({ items } : { items: TItem[] }) =>
+    items.length > 0 ? (
       <Wrapper>
         <List>
           <ListItem>
-            <Header>Your cart: {cart.lines.length} items</Header>
+            <Header>Your cart: {items.length} items</Header>
           </ListItem>
           <Spacer y={2} />
-          {cart.lines.map((item) => (
-            <ListItem key={item.id}>
-              <CartItem item={item} />
+          {items.map((item) => (
+            <ListItem key={item.product.id}>
+              <CartItem item={item.product} />
               <Spacer y={2} />
             </ListItem>
           ))}
         </List>
-        <Summary items={cart.lines} />
+        <Summary items={items} />
       </Wrapper>
     ) : (
-      <div>your cart is empty</div>
+      <div>Your cart is empty</div>
     );
-  // FIXME if else blocks should be more visible
-  return isLoading ? <div>is loading </div> : <CartView cart={cart} />;
+  return isLoading ? <div>is loading...</div>
+                   : error ? <div>{error.message}</div> 
+                             :<CartView items={cartItems} />;
 };
 
 export default Cart;

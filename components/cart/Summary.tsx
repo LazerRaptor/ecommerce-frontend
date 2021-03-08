@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { IProduct } from "../../lib/utils/interfaces";
+import type { TItem } from "../../lib/utils/interfaces";
 import { CURRENCY } from "../../lib/constants";
 import Button from "../ui/Button";
 import Spacer from "../ui/Spacer";
@@ -32,12 +32,12 @@ const Item = styled.div`
   }
 `;
 
-const Summary = function ({ items }: { items: Array<IProduct> }) {
+const Summary = function ({ items }: { items: Array<TItem> }) {
   const [amount, setAmount] = useState(0);
   useEffect(() => {
     let val = 0;
     if (items.length > 0)
-      val = items.reduce((acc, item) => acc + Number(item.price), 0);
+      val = items.reduce((acc, item) => acc + Number(item.product.price), 0);
     setAmount(val);
   });
   return (

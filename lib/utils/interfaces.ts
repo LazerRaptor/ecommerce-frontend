@@ -23,9 +23,14 @@ export interface IProduct {
   extra: any;
 }
 
+export type TItem = {
+  quantity: number,
+  product: IProduct,
+}
+
 export interface ICart {
   id: string;
   owner: number;
-  products: IProduct[];
+  items: TItem[];
   status: "open" | "submitted";
 }
