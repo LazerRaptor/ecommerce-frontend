@@ -3,6 +3,7 @@ import DetailView from "../../components/product/DetailView";
 import { fetcher } from "../../lib/utils/fetcher";
 import { BASE_URL } from "../../lib/constants";
 import { useProduct } from "../../lib/hooks/";
+import Loader from "../../components/ui/Loader";
 
 export async function getStaticPaths() {
   const response = await fetcher(`${BASE_URL}/api/paths/products.json`);
@@ -23,10 +24,10 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Products({ product }) {
-  const { data } = useProduct(product.slug, product);
-  return (
+  const { data, isLoading } = useProduct(product.slug, product);
+  return isLoading ? null : (
     <Layout title={product.title}>
-      <DetailView product={data} />;
+      <DetailView product={data} />
     </Layout>
   );
 }

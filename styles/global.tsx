@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
+    color: hsl(0, 0%, 26%);
     font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI",
     "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif;
   }

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { CURRENCY } from "../../../lib/constants";
-import { useCart } from "../../../lib/hooks";
 import { IProduct } from "../../../lib/utils/interfaces";
+import { useCart } from "../../../lib/hooks";
 import StarRating from "../../common/StarRating";
 import Spacer from "../../ui/Spacer";
 
 const Title = styled.h1`
-  font-size: 2.2em;
-  font-weight: 400;
+  font-size: 2em;
+  font-weight: 600;
 `;
 
 const Paragraph = styled.p`
@@ -20,7 +20,7 @@ const Price = styled.div`
 `;
 
 const ProductItem = ({ product }: {product: IProduct}) => {
-  const { AddButton } = useCart()
+  const { AddButton } = useCart();
   return (
     <div>
       <Title>{product.title}</Title>

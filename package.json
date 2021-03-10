@@ -25,6 +25,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.2.0",
+    "react-loader-spinner": "^4.0.0",
     "sass": "^1.26.10",
     "styled-components": "^5.2.1",
     "stylelint-config-recommended": "^3.0.0",

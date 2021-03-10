@@ -74,7 +74,7 @@ export function Registration() {
               <Label htmlFor="password2">Repeat Password</Label>
               <StyledField id="password2" name="password2" type="password" />
               <Spacer y={1} />
-              <Button title="Sign Up" size={19} type="submit" radius="32px" />
+              <Button type="submit" isRound >Sign Up</Button>
             </StyledForm>
           </Formik>
         </Container>

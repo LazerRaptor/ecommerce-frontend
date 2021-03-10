@@ -40,7 +40,7 @@ const Layout = ({ children, title = "e-commerce app" }) => {
   const { sidebar, setSidebar } = useContext(LayoutContext);
   const screenshade = sidebar ? (
     <Screenshade onClick={() => setSidebar(false)} />
-  ) : null;
+  ) : null
   return (
     <Fragment>
       <Head>

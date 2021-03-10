@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 import { BASE_URL } from "../constants";
 
-const login = async (data) => {
+const login = async (data: { email: string, password: string }) => {
   const url = `${BASE_URL}/api/auth/token/login/`;
-  const response = await axios.post(url, data);
+  const response: AxiosResponse<{ auth_token: string }> = await axios.post(url, data);
   if (response.status === 200) {
     Cookies.set("auth_token", response.data.auth_token);
   }

@@ -27,7 +27,7 @@ const Header = styled.h1`
 `;
 
 const Cart = function () {
-  const { cartItems, isLoading, error } = useCart();
+  const { cart, isLoading, error } = useCart();
   const CartView = ({ items } : { items: TItem[] }) =>
     items.length > 0 ? (
       <Wrapper>
@@ -38,7 +38,7 @@ const Cart = function () {
           <Spacer y={2} />
           {items.map((item) => (
             <ListItem key={item.product.id}>
-              <CartItem item={item.product} />
+              <CartItem product={item.product} quantity={item.quantity} />
               <Spacer y={2} />
             </ListItem>
           ))}
@@ -50,7 +50,7 @@ const Cart = function () {
     );
   return isLoading ? <div>is loading...</div>
                    : error ? <div>{error.message}</div> 
-                             :<CartView items={cartItems} />;
+                             :<CartView items={cart.items} />;
 };
 
 export default Cart;

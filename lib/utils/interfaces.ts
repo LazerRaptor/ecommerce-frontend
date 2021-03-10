@@ -5,7 +5,8 @@ export interface ICategory {
   parent: number | null;
 }
 
-type Image = {
+export type TImage = {
+  id: number;
   alt: string;
   src: string;
   is_showcase: boolean;
@@ -19,7 +20,7 @@ export interface IProduct {
   price: number;
   featured: boolean;
   active: boolean;
-  images: Image[];
+  images: TImage[];
   extra: any;
 }
 

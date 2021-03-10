@@ -1,9 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
+import { useCart } from "../../lib/hooks";
 import { IProduct } from "../../lib/utils/interfaces";
-import { CURRENCY } from "../../lib/constants";
+import { BASE_URL, CURRENCY } from "../../lib/constants";
 import { IoAddSharp, IoRemoveSharp } from "react-icons/io5";
 
 const Container = styled.div`
@@ -45,36 +47,38 @@ const Price = styled.span`
   font-weight: 400;
 `;
 
-const RemoveBtn = styled.button`
-  border: 0;
-  outline: 0;
-  text-decoration: underline;
-  font-size: 0.8em;
-  font-weight: 300;
-  cursor: pointer;
-`;
 
-const CartItem = function ({ item }: { item: IProduct }) {
-  const [showcase] = item.images.filter((img) => img.is_showcase);
-  const image = showcase || item.images[0];
-  const [qty, setQty] = useState<number>(1);
-  /** Event handlers */
-  const handleChangeQty = function (event: React.FormEvent<HTMLInputElement>) {
-    event.preventDefault();
-    const value = event.currentTarget.value;
-    let num: number;
-    num = Number(value);
-    if (isNaN(num)) num = qty;
-    setQty(num);
-  };
-  const handleOnBlur = function (event: React.FocusEvent<HTMLInputElement>) {
-    const value = event.currentTarget.value;
-    if (Number(value) <= 1) setQty(1);
-  };
+
+// FIXME refactoring needed (useReducer instead?)
+const CartItem = function ({ product, quantity }: { product: IProduct, quantity: number }) {
+  const { cart, RemoveButton } = useCart();
+  const [showcase] = product.images.filter((img) => img.is_showcase);
+  const image = showcase || product.images[0];
+  const [inputValue, setValue] = useState<string>(String(quantity));
+
+  const updateQuantity = async (value: number) => {
+    if (isNaN(value) || value < 1) value = quantity;
+    try { 
+      await axios.put(`${BASE_URL}/api/basket/${cart.id}/`, { product: product.id, quantity: value });
+      setValue(String(value));
+    } catch(error) {
+      console.warn(error);
+    }
+  }
+
+  const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+    let value = Number(e.currentTarget.value);
+    if (isNaN(value) || value < 1) {
+      setValue("");
+    } else {
+      setValue(String(value));
+    }
+  }
+
   return (
     <Container>
       <FlexRowCenter>
-        <Link href={`products/${encodeURIComponent(item.slug)}`}>
+        <Link href={`products/${encodeURIComponent(product.slug)}`}>
           <a>
             <Image
               src={image.src}
@@ -87,34 +91,34 @@ const CartItem = function ({ item }: { item: IProduct }) {
         </Link>
       </FlexRowCenter>
       <FlexRowCenter>
-        <Link href={`products/${encodeURIComponent(item.slug)}`}>
-          <Title>{item.title}</Title>
+        <Link href={`products/${encodeURIComponent(product.slug)}`}>
+          <Title>{product.title}</Title>
         </Link>
       </FlexRowCenter>
       <FlexRowCenter>
-        <Button onClick={() => setQty(qty - 1)} disabled={qty <= 1}>
+        <Button onClick={() => updateQuantity(Number(inputValue) - 1)} disabled={Number(inputValue) <= 1}>
           <IoRemoveSharp />
         </Button>
         <Input
           type="text"
-          value={qty}
+          value={String(inputValue)}
           onChange={(e: React.FormEvent<HTMLInputElement>) =>
-            handleChangeQty(e)
+            handleOnChange(e)
           }
-          onBlur={(e: React.FocusEvent<HTMLInputElement>) => handleOnBlur(e)}
+          onBlur={(e: React.FocusEvent<HTMLInputElement>) => updateQuantity(Number(e.currentTarget.value))}
         />
-        <Button onClick={() => setQty(qty + 1)}>
-          <IoAddSharp onClick={() => setQty(qty + 1)} />
+        <Button onClick={() => {updateQuantity(Number(inputValue) + 1)}}>
+          <IoAddSharp />
         </Button>
       </FlexRowCenter>
       <FlexRowCenter>
         <Price>
           {CURRENCY.sign}
-          {item.price}
+          {product.price}
         </Price>
       </FlexRowCenter>
       <FlexRowCenter>
-        <RemoveBtn onClick={() => console.log("remove")}>Remove</RemoveBtn>
+        <RemoveButton productId={product.id} />
       </FlexRowCenter>
     </Container>
   );

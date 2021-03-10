@@ -67,7 +67,7 @@ export function Login() {
               <Label htmlFor="password">Password</Label>
               <StyledField id="password" name="password" type="password" />
               <Spacer y={1} />
-              <Button title="Sign In" size={19} type="submit" radius="32px" />
+              <Button type="submit" isRound >Sign In</Button>
             </StyledForm>
           </Formik>
         </Container>

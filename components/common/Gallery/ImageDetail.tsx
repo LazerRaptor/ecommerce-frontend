@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 
@@ -19,20 +18,6 @@ const Zoom = styled.figure`
 `;
 
 const ImageDetail = ({ image, width = 480, height = 480 }) => {
-  const [zoomActive, setZoomActive] = useState(false);
-  const [offset, setOffset] = useState([50, 50]);
-
-  const calcOffset = (e) => {
-    const rect = e.target.getBoundingClientRect();
-    let offsetX = ((e.clientX - rect.x) / rect.width) * 100;
-    let offsetY = ((e.clientY - rect.y) / rect.height) * 100;
-    return [offsetX, offsetY];
-  };
-
-  const handleOnMouseMove = (e) => {
-    setOffset(calcOffset(e));
-  };
-
   return (
     <Container>
       <Figure>
@@ -41,24 +26,9 @@ const ImageDetail = ({ image, width = 480, height = 480 }) => {
           alt={image.alt}
           width={width}
           height={height}
-          onMouseOver={() => setZoomActive(true)}
-          onMouseLeave={() => setZoomActive(false)}
-          onMouseMove={(e) => handleOnMouseMove(e)}
           objectFit="contain"
         />
       </Figure>
-      <Zoom active={zoomActive}>
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundImage: `url("${image.src}")`,
-            backgroundSize: "250%",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: `${offset[0]}% ${offset[1]}%`,
-          }}
-        ></div>
-      </Zoom>
     </Container>
   );
 };

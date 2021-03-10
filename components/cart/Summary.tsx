@@ -60,10 +60,8 @@ const Summary = function ({ items }: { items: Array<TItem> }) {
       <Spacer y={0.6} />
       <Button
         isFullWidth
-        title="Proceed to Checkout"
-        size={19}
         onClick={() => console.log()}
-      />
+      >Proceed to Checkout</Button>
     </Wrapper>
   );
 };

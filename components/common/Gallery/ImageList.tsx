@@ -1,8 +1,6 @@
 import Image from "next/image";
-import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
-
-// FIXME: poor performance, switching between images forces redundant GET requests that get blocked
+import { TImage } from "../../../lib/utils/interfaces";
 
 const Item = styled.li`
   margin: 8px 0;
@@ -24,9 +22,9 @@ const ImageList = ({
 
   return images.length > 1 ? (
     <ul>
-      {images.map((image) => (
+      {images.map((image: TImage) => (
         <Item
-          key={uuidv4()}
+          key={image.id}
           onClick={() => handleOnClick(image.id)}
           active={selected.id == image.id}
         >
@@ -36,7 +34,6 @@ const ImageList = ({
             width={width}
             height={height}
             objectFit="contain"
-            loading="eager"
           />
         </Item>
       ))}
