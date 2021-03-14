@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-
   /* Box sizing rules */
   *,
   *::before,
@@ -35,7 +34,6 @@ const GlobalStyle = createGlobalStyle`
 
   /* Set core body defaults */
   body {
-    min-height: 100vh;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;

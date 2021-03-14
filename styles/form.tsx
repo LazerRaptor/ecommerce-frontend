@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Form, Field } from "formik";
+import { variants } from "./variables";
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,13 +19,14 @@ const Header = styled.header`
   font-size: 1.8em;
 `;
 
-const StyledForm = styled(Form)`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;
 
-const StyledField = styled(Field)`
-  border: 1px solid hsl(0, 0%, 62%);
+const Field = styled.input`
+  border: 1px solid ${(props) => props.isInvalid ? variants.danger : "hsl(0, 0%, 60%)"};
+  outline: 0;
   line-height: 2rem;
   font-size: 1.1em;
   font-weight: 400;
@@ -41,19 +42,26 @@ const Label = styled.label`
   margin-bottom: 0.4rem;
 `;
 
-const StyledError = styled.div`
-  font-size: 0.9em;
-  color: hsl(0, 53%, 48%);
+const Feedback = styled.div`
+  font-size: .85em;
+  color: ${variants.danger};
+  margin-top: 4px;
+`;
+
+const FormStatus = styled.div`
+  font-size: .94em;
+  color: ${variants.danger};
   text-align: center;
-  padding-top: 1em;
+  height: 1em;
 `;
 
 export {
   Wrapper,
   Container,
-  StyledForm,
-  StyledField,
+  Form,
+  Field,
   Header,
   Label,
-  StyledError,
+  Feedback,
+  FormStatus
 };

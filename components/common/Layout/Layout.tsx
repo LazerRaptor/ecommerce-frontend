@@ -1,14 +1,13 @@
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import Head from "next/head";
 import styled from "styled-components";
-import { LayoutContext } from "../../../lib/contexts/layoutContext";
-import Sidebar from "../../ui/Sidebar";
-import Navbar from "../../ui/Navbar";
-import Spacer from "../../ui/Spacer";
+import { LayoutContext } from "lib/contexts/layoutContext";
+import Sidebar from "components/ui/Sidebar";
+import Navbar from "components/ui/Navbar";
+import Spacer from "components/ui/Spacer";
 
 const Wrapper = styled.div`
-  position: relative;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -17,12 +16,12 @@ const Wrapper = styled.div`
 const Main = styled.div`
   width: 88%;
   margin: 0 auto;
-  min-height: 100%;
+  height: 100%;
   box-sizing: border-box;
   @media (max-width: 736px) {
     width: 98%;
     margin: 0 auto;
-  } ;
+  }
 `;
 
 const Screenshade = styled.div`
@@ -42,7 +41,7 @@ const Layout = ({ children, title = "e-commerce app" }) => {
     <Screenshade onClick={() => setSidebar(false)} />
   ) : null
   return (
-    <Fragment>
+    <>
       <Head>
         <title>{title}</title>
       </Head>
@@ -53,7 +52,7 @@ const Layout = ({ children, title = "e-commerce app" }) => {
         <Main>{children}</Main>
         {screenshade}
       </Wrapper>
-    </Fragment>
+    </>
   );
 };
 

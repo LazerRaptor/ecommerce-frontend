@@ -1,31 +1,93 @@
-import { Fragment, useState } from "react";
-import { useRouter } from "next/router";
-import { Formik, FormikHelpers } from "formik";
-import { v4 as uuidv4 } from "uuid";
 import Head from "next/head";
-import { login } from "../../lib/api/auth";
-import Spacer from "../../components/ui/Spacer";
-import Button from "../../components/ui/Button";
+import { withFormik } from "formik";
+import * as yup from 'yup';
+import { login } from "lib/api/service";
+import Spacer from "components/ui/Spacer";
+import Button from "components/ui/Button";
 import {
   Wrapper,
   Container,
-  StyledForm, // Formik Form component with applied styles
-  StyledField, // Formik Field component with applied styles
+  Form,
+  Field,
   Header,
   Label,
-  StyledError,
-} from "./styles";
+  Feedback,
+  FormStatus,
+} from "styles/form";
 
-type UserInput = {
-  email: string;
-  password: string;
-};
+const BasicLoginForm = (props) => {
+  const {
+    values,
+    touched,
+    errors,
+    status,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    isSubmitting,
+    isValid
+  } = props;
+  return (
+    <Wrapper>
+      <Container>
+        <Header>Sign in to your account</Header>
+        <Spacer y={1} />
+        <FormStatus>{status}</FormStatus>
+        <Spacer y={1} />
+        <Form onSubmit={handleSubmit}>
+          <Label htmlFor="email">Email</Label>
+          <Field 
+            id="email" 
+            name="email" 
+            type="email" 
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.email}
+            isInvalid={errors.email && touched.email}
+          />
+          {errors.email && touched.email && <Feedback>{errors.email}</Feedback>}
+          <Spacer y={0.6} />
+          <Label htmlFor="password">Password</Label>
+          <Field 
+            id="password" 
+            name="password" 
+            type="password" 
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.password}
+            isInvalid={errors.password && touched.password}
+          />
+          {errors.password && touched.password && <Feedback>{errors.password}</Feedback>}
+          <Spacer y={1} />
+          <Button type="submit" isRound disabled={!isValid || isSubmitting}>Sign In</Button>
+        </Form>
+      </Container>
+    </Wrapper>
+  )
+}
+
+const schema = yup.object().shape({
+  email: yup.string().email("Invalid email address.").required("This field is required."),
+  password: yup.string().min(6, "Password must be at least 6 characters.").required("This field is required.")
+})
+
+const LoginForm = withFormik({
+  mapPropsToValues: () => ({ email: "", password: ""}),
+  validationSchema: schema,
+  handleSubmit: async (values, { setStatus }) => {
+    try {
+      await login(values);
+      window.location.href = "/";
+    } catch(error) {
+      setStatus(...error.response.data.non_field_errors);
+    };
+  },
+  displayName: 'LoginForm',
+})(BasicLoginForm);
 
 export function Login() {
-  const router = useRouter();
-  const [errors, setErrors] = useState<Array<string>>([]);
   return (
-    <Fragment>
+    <>
       <Head>
         <title>Login Page</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -34,44 +96,7 @@ export function Login() {
           rel="stylesheet"
         />
       </Head>
-      <Wrapper>
-        <Container>
-          <Header>Sign in to your account</Header>
-          <StyledError>
-            {errors.map((err) => (
-              <p key={uuidv4()}>{err}</p>
-            ))}
-          </StyledError>
-          <Spacer y={2} />
-          <Formik
-            initialValues={{
-              email: "",
-              password: "",
-            }}
-            onSubmit={async (
-              input: UserInput,
-              { setSubmitting }: FormikHelpers<UserInput>
-            ) => {
-              login(input)
-                .then(() => {
-                  setSubmitting(false);
-                  router.push("/");
-                })
-                .catch((e) => setErrors(e.response.data.non_field_errors));
-            }}
-          >
-            <StyledForm>
-              <Label htmlFor="email">Email</Label>
-              <StyledField id="email" name="email" type="email" />
-              <Spacer y={0.6} />
-              <Label htmlFor="password">Password</Label>
-              <StyledField id="password" name="password" type="password" />
-              <Spacer y={1} />
-              <Button type="submit" isRound >Sign In</Button>
-            </StyledForm>
-          </Formik>
-        </Container>
-      </Wrapper>
-    </Fragment>
+      <LoginForm />
+    </>
   );
 }

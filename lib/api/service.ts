@@ -2,6 +2,19 @@ import axios, { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 import { BASE_URL } from "../constants";
 
+
+export default class ApiService {
+  static saveStripeInfo(data = {}) {
+    
+  };
+}
+
+const saveStripeResponse = async (data) => {
+  const url = `${BASE_URL}/api/checkout/customer/`;
+  const response = await axios.post(url, data);
+  return response;
+};
+
 const login = async (data: { email: string, password: string }) => {
   const url = `${BASE_URL}/api/auth/token/login/`;
   const response: AxiosResponse<{ auth_token: string }> = await axios.post(url, data);
@@ -26,4 +39,9 @@ const register = async (data) => {
   return response;
 };
 
-export { login, logout, register };
+export { 
+  login, 
+  logout, 
+  register, 
+  saveStripeResponse 
+};
