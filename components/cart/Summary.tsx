@@ -1,7 +1,7 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import type { TItem } from "../../lib/utils/interfaces";
-import { CURRENCY } from "../../lib/constants";
+import { ICart } from "lib/utils/interfaces";
+import { CURRENCY } from "lib/constants";
 import Button from "../ui/Button";
 import Spacer from "../ui/Spacer";
 
@@ -32,27 +32,24 @@ const Item = styled.div`
   }
 `;
 
-const Summary = function ({ items }: { items: Array<TItem> }) {
-  const [amount, setAmount] = useState(0);
-  useEffect(() => {
-    let val = 0;
-    if (items.length > 0)
-      val = items.reduce((acc, item) => acc + Number(item.product.price), 0);
-    setAmount(val);
-  });
+const Summary = function ({ cart }: { cart: ICart }) {
+  const router = useRouter();
+  const handleOnClick = () => {
+    router.push('/checkout')
+  }
   return (
     <Wrapper>
       <Item>
         <span className="bolder">Est. Total: </span>
         <span className="bolder">
           {CURRENCY.sign}
-          {amount.toFixed(2)}
+          {cart.total.toFixed(2)}
         </span>
       </Item>
       <Item>
         <span>Subtotal: </span>
         {CURRENCY.sign}
-        {amount.toFixed(2)}
+        {cart.total.toFixed(2)}
       </Item>
       <Item>
         <span>Shipping: </span> FREE
@@ -61,7 +58,7 @@ const Summary = function ({ items }: { items: Array<TItem> }) {
       <Button
         isFullWidth
         isRound
-        onClick={() => console.log()}
+        onClick={() => handleOnClick()}
       >Proceed to Checkout</Button>
     </Wrapper>
   );

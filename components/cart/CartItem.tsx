@@ -51,7 +51,7 @@ const Price = styled.span`
 
 // FIXME refactoring needed (useReducer instead?)
 const CartItem = function ({ product, quantity }: { product: IProduct, quantity: number }) {
-  const { cart, RemoveButton } = useCart();
+  const { cart, RemoveButton, mutate } = useCart();
   const [showcase] = product.images.filter((img) => img.is_showcase);
   const image = showcase || product.images[0];
   const [inputValue, setValue] = useState<string>(String(quantity));
@@ -61,6 +61,7 @@ const CartItem = function ({ product, quantity }: { product: IProduct, quantity:
     try { 
       await axios.put(`${BASE_URL}/api/basket/${cart.id}/`, { product: product.id, quantity: value });
       setValue(String(value));
+      mutate()
     } catch(error) {
       console.warn(error);
     }
@@ -70,6 +71,7 @@ const CartItem = function ({ product, quantity }: { product: IProduct, quantity:
     let value = Number(e.currentTarget.value);
     if (isNaN(value) || value < 1) {
       setValue("");
+      mutate()
     } else {
       setValue(String(value));
     }
@@ -114,7 +116,7 @@ const CartItem = function ({ product, quantity }: { product: IProduct, quantity:
       <FlexRowCenter>
         <Price>
           {CURRENCY.sign}
-          {product.price}
+          {(product.price * quantity).toFixed(2)}
         </Price>
       </FlexRowCenter>
       <FlexRowCenter>

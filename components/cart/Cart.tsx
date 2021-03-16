@@ -43,7 +43,7 @@ const Cart = function () {
             </ListItem>
           ))}
         </List>
-        <Summary items={items} />
+        <Summary cart={cart} />
       </Wrapper>
     ) : (
       <div>Your cart is empty</div>

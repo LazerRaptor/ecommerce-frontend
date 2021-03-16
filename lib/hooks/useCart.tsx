@@ -19,13 +19,17 @@ const RemoveBtn = styled.button`
 
 const useCart = function() {
   const fetcher = async function getOrCreateCart(url: string, id: string) {
-    if (id === undefined) {
-      const response: AxiosResponse<ICart> = await axios.post(url); 
-      Cookie.set('cart_id', response.data.id);
+    try {
+      const response: AxiosResponse<ICart> = await axios.get(url+id);
       return response.data;
+    } catch(error) {
+      if (error.response.status === 404) {
+        const response: AxiosResponse<ICart> = await axios.post(url); 
+        Cookie.set('cart_id', response.data.id);
+        return response.data;
+      }
+      throw error;
     }
-    const response: AxiosResponse<ICart> = await axios.get(url+id);
-    return response.data;
   };
 
   const cartId = Cookie.get('cart_id');
@@ -89,6 +93,7 @@ const useCart = function() {
     cart,
     error,
     isLoading: !cart && !error,
+    mutate,
     AddButton,
     RemoveButton
   }

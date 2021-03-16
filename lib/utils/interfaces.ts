@@ -34,4 +34,5 @@ export interface ICart {
   owner: number;
   items: TItem[];
   status: "open" | "submitted";
+  total: number;
 }
