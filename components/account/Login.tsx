@@ -15,6 +15,7 @@ import {
   FormStatus,
 } from "styles/form";
 
+
 const BasicLoginForm = (props) => {
   const {
     values,
@@ -67,8 +68,12 @@ const BasicLoginForm = (props) => {
 }
 
 const schema = yup.object().shape({
-  email: yup.string().email("Invalid email address.").required("This field is required."),
-  password: yup.string().min(6, "Password must be at least 6 characters.").required("This field is required.")
+  email: yup.string()
+    .email("Invalid email address.")
+    .required("This field is required."),
+  password: yup.string()
+    .min(6, "Password must be at least 6 characters.")
+    .required("This field is required.")
 })
 
 const LoginForm = withFormik({

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Button = styled.button`
   background: #000;
   color: #fff;
-  font-weight: 600;
+  font-weight: ${props => props.isBold ? "600" : "500"};
   font-size: ${props => props.isSmall ? ".9em" : "1.1em"};
   width: ${(props) => (props.isFullWidth ? "100%" : "initial")};
   border-radius: ${(props) => (props.isRound ? "32px" : "4px")};
@@ -14,6 +14,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 8rem;
 
   &:disabled {
     cursor: not-allowed;

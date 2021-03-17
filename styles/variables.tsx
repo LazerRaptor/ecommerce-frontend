@@ -4,7 +4,7 @@ const variants = {
 }
 
 const colors = {
-  grey: "#4c4c4c",
+  grey: "#6f6f6f",
 }
 
 export {

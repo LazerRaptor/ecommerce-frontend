@@ -36,3 +36,11 @@ export interface ICart {
   status: "open" | "submitted";
   total: number;
 }
+
+export interface IProfile {
+  id?: number;
+  first_name: string;
+  last_name: string;
+  address: string;
+  phone: string; 
+}
